@@ -82,3 +82,5 @@ app/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml
 app/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml
 app/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml
 app/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/vcs.xml
