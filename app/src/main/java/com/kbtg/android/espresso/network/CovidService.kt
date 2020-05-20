@@ -1,4 +1,4 @@
-package com.kbtg.android.espresso.page3.network
+package com.kbtg.android.espresso.network
 
 import com.kbtg.android.espresso.page3.model.SummaryResponse
 import retrofit2.Call

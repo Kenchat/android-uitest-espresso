@@ -12,8 +12,8 @@ import kotlinx.android.synthetic.main.page1_activity.*
 
 class MainActivity : AppCompatActivity(), MainControllerView {
 
-    private var mAdapter: ListHomeAdapter? = null
-    private var mListData = ArrayList<String>()
+    private var adapter: ListHomeAdapter? = null
+    private var listData = ArrayList<String>()
 
     private lateinit var presenter: MainPresenterImpl
 
@@ -27,9 +27,9 @@ class MainActivity : AppCompatActivity(), MainControllerView {
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            mAdapter =
+            adapter =
                     ListHomeAdapter(this@MainActivity,
-                            mListData,
+                            listData,
                             onItemClick = { item, position ->
                                 presenter.onItemClicked(
                                         this@MainActivity,
@@ -37,14 +37,14 @@ class MainActivity : AppCompatActivity(), MainControllerView {
                                         position
                                 )
                             })
-            adapter = mAdapter
+            adapter = adapter
         }
     }
 
     override fun onUpdateListView(listData: ArrayList<String>) {
-        mListData.clear()
-        mListData.addAll(listData)
-        mAdapter?.setItemList(mListData)
+        this.listData.clear()
+        this.listData.addAll(listData)
+        adapter?.setItemList(this.listData)
     }
 
     override fun onShowNextPage(intent: Intent) {

@@ -1,4 +1,4 @@
-package com.kbtg.android.espresso.page3.network
+package com.kbtg.android.espresso.network
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

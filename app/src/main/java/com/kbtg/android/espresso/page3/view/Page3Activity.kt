@@ -1,6 +1,8 @@
 package com.kbtg.android.espresso.page3.view
 
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kbtg.android.espresso.R
@@ -16,9 +18,9 @@ class Page3Activity : AppCompatActivity(), IPage3View {
 
     private lateinit var presenter: Page3PresenterImpl
 
-    private var mAdapter: SummaryDataAdapter? = null
-    private var mListData = ArrayList<Country>()
-    
+    private var summaryDataAdapter: SummaryDataAdapter? = null
+    private var listData = ArrayList<Country>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.page3_activity)
@@ -27,19 +29,37 @@ class Page3Activity : AppCompatActivity(), IPage3View {
 
         rcvCovidSummaryData.apply {
             layoutManager = LinearLayoutManager(this@Page3Activity)
-            mAdapter = SummaryDataAdapter(mListData)
-            adapter = mAdapter
+            summaryDataAdapter = SummaryDataAdapter(listData)
+            adapter = summaryDataAdapter
         }
     }
 
-    override fun updateDataSummary(dataList: List<Country>) {
-        mListData.clear()
-        mListData.addAll(dataList)
-        mAdapter?.setItemList(mListData)
+    override fun onResume() {
+        super.onResume()
+        loading.visibility = View.VISIBLE
+    }
 
+    override fun updateDataSummary(dataList: List<Country>) {
+        loading.visibility = View.GONE
         val date = Calendar.getInstance().time
         val formatter = SimpleDateFormat.getDateTimeInstance()
         val formatedDate = formatter.format(date)
         tvTime.text = "Time: $formatedDate"
+
+        listData.clear()
+        listData.addAll(dataList)
+        summaryDataAdapter?.setItemList(listData)
+
+    }
+
+    override fun onGetDataFailure() {
+        loading.visibility = View.GONE
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("Get data in failure")
+
+        builder.setPositiveButton(android.R.string.yes) { dialog, which -> Unit }
+
+        builder.show()
     }
 }

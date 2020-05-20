@@ -1,8 +1,8 @@
 package com.kbtg.android.espresso.page3.presenter
 
 import com.kbtg.android.espresso.page3.model.SummaryResponse
-import com.kbtg.android.espresso.page3.network.CovidService
-import com.kbtg.android.espresso.page3.network.ServiceBuilder
+import com.kbtg.android.espresso.network.CovidService
+import com.kbtg.android.espresso.network.ServiceBuilder
 import com.kbtg.android.espresso.page3.view.IPage3View
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,7 +24,7 @@ class Page3PresenterImpl(_view: IPage3View) : IPage3Presenter {
             }
 
             override fun onFailure(call: Call<SummaryResponse>, t: Throwable) {
-
+                view.onGetDataFailure()
             }
         })
     }
