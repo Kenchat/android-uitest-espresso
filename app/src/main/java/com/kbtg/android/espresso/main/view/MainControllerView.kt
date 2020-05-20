@@ -1,8 +1,8 @@
-package com.kbtg.android.espresso.page1.view
+package com.kbtg.android.espresso.main.view
 
 import android.content.Intent
 
-interface IPage1View {
+interface MainControllerView {
 
     fun onUpdateListView(listData: ArrayList<String>)
 

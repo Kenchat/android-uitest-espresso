@@ -1,14 +1,14 @@
-package com.kbtg.android.espresso.page1.presenter
+package com.kbtg.android.espresso.main.presenter
 
 import android.content.Context
 import android.content.Intent
+import com.kbtg.android.espresso.main.view.MainControllerView
 import com.kbtg.android.espresso.page2.view.DATA
 import com.kbtg.android.espresso.page2.view.Page2Activity
-import com.kbtg.android.espresso.page1.view.IPage1View
 
-class Page1PresenterImpl(_view: IPage1View) : IPage1Presenter {
+class MainPresenterImpl(_view: MainControllerView) : MainPresenter {
 
-    private var view: IPage1View = _view
+    private var view: MainControllerView = _view
 
     override fun initView() {
         var mListData = ArrayList<String>()
