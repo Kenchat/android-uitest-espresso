@@ -7,4 +7,6 @@ interface IPage3View {
     fun updateDataSummary(dataList: List<Country>)
 
     fun onGetDataFailure()
+
+    fun goToCountryDetail(countryName: String)
 }

@@ -1,11 +1,14 @@
 package com.kbtg.android.espresso.page3.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kbtg.android.espresso.R
+import com.kbtg.android.espresso.countrydetail.view.COUNTRY_NAME
+import com.kbtg.android.espresso.countrydetail.view.CountryDetailActivity
 import com.kbtg.android.espresso.page3.adapter.SummaryDataAdapter
 import com.kbtg.android.espresso.page3.model.Country
 import com.kbtg.android.espresso.page3.presenter.Page3PresenterImpl
@@ -27,16 +30,15 @@ class Page3Activity : AppCompatActivity(), IPage3View {
 
         presenter = Page3PresenterImpl(this)
 
+        loading.visibility = View.VISIBLE
+
         rcvCovidSummaryData.apply {
             layoutManager = LinearLayoutManager(this@Page3Activity)
-            summaryDataAdapter = SummaryDataAdapter(listData)
+            summaryDataAdapter = SummaryDataAdapter(listData, onItemClick = { item ->
+                presenter.onItemSelected(item)
+            })
             adapter = summaryDataAdapter
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        loading.visibility = View.VISIBLE
     }
 
     override fun updateDataSummary(dataList: List<Country>) {
@@ -58,8 +60,14 @@ class Page3Activity : AppCompatActivity(), IPage3View {
         builder.setTitle("Error")
         builder.setMessage("Get data in failure")
 
-        builder.setPositiveButton(android.R.string.yes) { dialog, which -> Unit }
+        builder.setPositiveButton(android.R.string.yes) { _, _ -> Unit }
 
         builder.show()
+    }
+
+    override fun goToCountryDetail(countryName: String) {
+        val intent = Intent(this@Page3Activity, CountryDetailActivity::class.java)
+        intent.putExtra(COUNTRY_NAME, countryName)
+        startActivity(intent)
     }
 }

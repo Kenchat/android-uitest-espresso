@@ -4,4 +4,9 @@
     <!--    Page 3-->
     <string name="country_name_label">Country Name: </string>
     <string name="total_confirm_label">Total Confirm: </string>
+
+    <!--    Country detail-->
+    <string name="confirmed">Confirmed</string>
+    <string name="recovered">Recovered</string>
+    <string name="deaths">Deaths</string>
 </resources>

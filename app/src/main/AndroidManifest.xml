@@ -23,7 +23,7 @@
 
         <activity android:name=".page2.view.Page2Activity" />
         <activity android:name=".page3.view.Page3Activity" />
-
+        <activity android:name=".countrydetail.view.CountryDetailActivity" />
     </application>
 
 </manifest>

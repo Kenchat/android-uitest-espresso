@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:background="@drawable/border_background"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvConfirmLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/confirmed"
+        android:textColor="@color/yellow"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDate" />
+
+    <TextView
+        android:id="@+id/tvConfirmValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/yellow"
+        app:layout_constraintLeft_toRightOf="@id/tvConfirmLabel"
+        app:layout_constraintTop_toTopOf="@id/tvConfirmLabel" />
+
+    <TextView
+        android:id="@+id/tvRecoveredLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/recovered"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/tvConfirmLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvConfirmLabel" />
+
+    <TextView
+        android:id="@+id/tvRecoveredValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        app:layout_constraintLeft_toLeftOf="@id/tvConfirmValue"
+        app:layout_constraintLeft_toRightOf="@id/tvConfirmLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvConfirmValue" />
+
+    <TextView
+        android:id="@+id/tvDeathLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/deaths"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/tvRecoveredLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvRecoveredLabel" />
+
+    <TextView
+        android:id="@+id/tvDeathValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        app:layout_constraintLeft_toLeftOf="@id/tvRecoveredValue"
+        app:layout_constraintLeft_toRightOf="@id/tvRecoveredLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvRecoveredValue" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
