@@ -19,6 +19,11 @@ class MainPresenterImpl(_view: MainControllerView) : MainPresenter {
     }
 
     override fun onItemClicked(context: Context, data: String, position: Int) {
+        if (position == 0) {
+            view.goToPage3Demo()
+            return
+        }
+
         val intent = Intent(context, Page2Activity::class.java)
         intent.putExtra(DATA, data)
         view.onShowNextPage(intent)

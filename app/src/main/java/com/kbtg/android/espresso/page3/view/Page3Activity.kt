@@ -18,8 +18,7 @@ class Page3Activity : AppCompatActivity(), IPage3View {
 
     private var mAdapter: SummaryDataAdapter? = null
     private var mListData = ArrayList<Country>()
-
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.page3_activity)

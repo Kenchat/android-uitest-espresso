@@ -7,4 +7,6 @@ interface MainControllerView {
     fun onUpdateListView(listData: ArrayList<String>)
 
     fun onShowNextPage(intent: Intent)
+
+    fun goToPage3Demo()
 }

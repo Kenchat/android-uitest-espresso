@@ -24,7 +24,7 @@ class Page3PresenterImpl(_view: IPage3View) : IPage3Presenter {
             }
 
             override fun onFailure(call: Call<SummaryResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+
             }
         })
     }

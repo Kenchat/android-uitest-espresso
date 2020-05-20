@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kbtg.android.espresso.R
 import com.kbtg.android.espresso.main.adapter.ListHomeAdapter
 import com.kbtg.android.espresso.main.presenter.MainPresenterImpl
+import com.kbtg.android.espresso.page3.view.Page3Activity
 import kotlinx.android.synthetic.main.page1_activity.*
 
 class MainActivity : AppCompatActivity(), MainControllerView {
@@ -47,6 +48,11 @@ class MainActivity : AppCompatActivity(), MainControllerView {
     }
 
     override fun onShowNextPage(intent: Intent) {
+        startActivity(intent)
+    }
+
+    override fun goToPage3Demo() {
+        val intent = Intent(this, Page3Activity::class.java)
         startActivity(intent)
     }
 }
