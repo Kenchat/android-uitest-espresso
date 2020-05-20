@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="@string/recovered"
-        android:textColor="@color/blue"
+        android:textColor="@color/green"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/tvConfirmLabel"
         app:layout_constraintTop_toBottomOf="@id/tvConfirmLabel" />
@@ -55,7 +55,8 @@
         android:textColor="@color/blue"
         app:layout_constraintLeft_toLeftOf="@id/tvConfirmValue"
         app:layout_constraintLeft_toRightOf="@id/tvConfirmLabel"
-        app:layout_constraintTop_toBottomOf="@id/tvConfirmValue" />
+        app:layout_constraintTop_toBottomOf="@id/tvConfirmValue"
+        app:layout_constraintTop_toTopOf="@id/tvRecoveredLabel" />
 
     <TextView
         android:id="@+id/tvDeathLabel"
@@ -75,7 +76,8 @@
         android:textColor="@color/red"
         app:layout_constraintLeft_toLeftOf="@id/tvRecoveredValue"
         app:layout_constraintLeft_toRightOf="@id/tvRecoveredLabel"
-        app:layout_constraintTop_toBottomOf="@id/tvRecoveredValue" />
+        app:layout_constraintTop_toBottomOf="@id/tvRecoveredValue"
+        app:layout_constraintTop_toTopOf="@id/tvDeathLabel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
