@@ -27,15 +27,15 @@ class Page1Activity : AppCompatActivity(), IPage1View {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@Page1Activity)
             mAdapter =
-                ListHomeAdapter(this@Page1Activity,
-                    mListData,
-                    onItemClick = { item, position ->
-                        presenter.onItemClicked(
-                            this@Page1Activity,
-                            item,
-                            position
-                        )
-                    })
+                    ListHomeAdapter(this@Page1Activity,
+                            mListData,
+                            onItemClick = { item, position ->
+                                presenter.onItemClicked(
+                                        this@Page1Activity,
+                                        item,
+                                        position
+                                )
+                            })
 
             adapter = mAdapter
         }
