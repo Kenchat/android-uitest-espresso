@@ -1,42 +1,41 @@
-package com.kbtg.android.espresso.page1.view
+package com.kbtg.android.espresso.main.view
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kbtg.android.espresso.R
-import com.kbtg.android.espresso.page1.adapter.ListHomeAdapter
-import com.kbtg.android.espresso.page1.presenter.Page1PresenterImpl
+import com.kbtg.android.espresso.main.adapter.ListHomeAdapter
+import com.kbtg.android.espresso.main.presenter.MainPresenterImpl
 import kotlinx.android.synthetic.main.page1_activity.*
 
-class Page1Activity : AppCompatActivity(), IPage1View {
+class MainActivity : AppCompatActivity(), MainControllerView {
 
     private var mAdapter: ListHomeAdapter? = null
     private var mListData = ArrayList<String>()
 
-    private lateinit var presenter: Page1PresenterImpl
+    private lateinit var presenter: MainPresenterImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.page1_activity)
 
-        presenter = Page1PresenterImpl(this)
+        presenter = MainPresenterImpl(this)
 
         presenter.initView()
 
         recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@Page1Activity)
+            layoutManager = LinearLayoutManager(this@MainActivity)
             mAdapter =
-                    ListHomeAdapter(this@Page1Activity,
+                    ListHomeAdapter(this@MainActivity,
                             mListData,
                             onItemClick = { item, position ->
                                 presenter.onItemClicked(
-                                        this@Page1Activity,
+                                        this@MainActivity,
                                         item,
                                         position
                                 )
                             })
-
             adapter = mAdapter
         }
     }

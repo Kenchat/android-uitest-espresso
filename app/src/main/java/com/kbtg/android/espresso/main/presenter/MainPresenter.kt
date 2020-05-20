@@ -1,8 +1,8 @@
-package com.kbtg.android.espresso.page1.presenter
+package com.kbtg.android.espresso.main.presenter
 
 import android.content.Context
 
-interface IPage1Presenter {
+interface MainPresenter {
 
     fun initView()
 

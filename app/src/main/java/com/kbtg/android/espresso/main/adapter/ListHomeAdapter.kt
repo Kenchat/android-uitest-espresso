@@ -1,4 +1,4 @@
-package com.kbtg.android.espresso.page1.adapter
+package com.kbtg.android.espresso.main.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
