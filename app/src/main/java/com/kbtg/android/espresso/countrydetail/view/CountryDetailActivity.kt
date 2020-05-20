@@ -36,11 +36,6 @@ class CountryDetailActivity : AppCompatActivity(), ICountryDetailView {
         presenter.getCountryDate(intent.getStringExtra(COUNTRY_NAME))
     }
 
-    override fun onResume() {
-        super.onResume()
-        loading.visibility = View.VISIBLE
-    }
-
     override fun updateCountryDetailData(dataList: List<CountryDetailResponseItem>) {
         loading.visibility = View.GONE
 
