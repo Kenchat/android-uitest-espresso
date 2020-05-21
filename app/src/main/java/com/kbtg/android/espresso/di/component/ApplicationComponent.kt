@@ -1,14 +1,20 @@
 package com.kbtg.android.espresso.di.component
 
 import com.kbtg.android.espresso.ApplicationClass
-import com.kbtg.android.espresso.di.module.AppModule
+import com.kbtg.android.espresso.di.module.ActivityBuilder
+
 import com.kbtg.android.espresso.di.module.NetModule
-import com.kbtg.android.espresso.ui.nationlist.presenter.NationListPresenterImpl
 import dagger.Component
+import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
+import javax.inject.Singleton
 
-@Component(modules = [AppModule::class, NetModule::class])
-interface ApplicationComponent {
-    fun inject(mewApplication: ApplicationClass)
-
-    fun inject(nationListPresenterImpl: NationListPresenterImpl)
+@Singleton
+@Component(modules = [
+    AndroidInjectionModule::class,
+    NetModule::class,
+    ActivityBuilder::class])
+interface ApplicationComponent : AndroidInjector<ApplicationClass> {
+    @Component.Factory
+    interface Factory : AndroidInjector.Factory<ApplicationClass>
 }

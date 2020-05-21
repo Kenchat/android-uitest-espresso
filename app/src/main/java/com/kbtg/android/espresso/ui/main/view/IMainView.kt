@@ -2,7 +2,7 @@ package com.kbtg.android.espresso.ui.main.view
 
 import android.content.Intent
 
-interface MainControllerView {
+interface IMainView {
 
     fun onUpdateListView(listData: ArrayList<String>)
 

@@ -1,6 +1,6 @@
 package com.kbtg.android.espresso.listcountry.presenter
 
-interface CountryDetailPresenter {
+interface NationDetailPresenter {
 
     fun getCountryDate(countryName: String)
 

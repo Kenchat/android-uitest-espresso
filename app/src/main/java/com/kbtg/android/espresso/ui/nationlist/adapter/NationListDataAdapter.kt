@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kbtg.android.espresso.R
 import com.kbtg.android.espresso.ui.nationlist.model.Country
 
-class SummaryDataAdapter(
+class NationListDataAdapter(
         private var itemList: List<Country>?,
         private var onItemClick: ((item: String) -> Unit)? = null
 ) :
-        RecyclerView.Adapter<SummaryDataAdapter.ViewHolder>() {
+        RecyclerView.Adapter<NationListDataAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)

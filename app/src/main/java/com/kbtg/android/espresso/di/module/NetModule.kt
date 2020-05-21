@@ -2,7 +2,6 @@ package com.kbtg.android.espresso.di.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.kbtg.android.espresso.BuildConfig
 import com.kbtg.android.espresso.network.CovidService
 import dagger.Module
 import dagger.Provides
@@ -26,7 +25,7 @@ class NetModule {
     @Provides
     protected fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()
-        interceptor.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor
     }
 
@@ -51,7 +50,7 @@ class NetModule {
 
     @Provides
     fun getTimeOut(): Int {
-        return 30
+        return 15
     }
 
     @Provides

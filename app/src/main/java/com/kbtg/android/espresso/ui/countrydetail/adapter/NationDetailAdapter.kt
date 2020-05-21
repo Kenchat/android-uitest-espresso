@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kbtg.android.espresso.R
 import com.kbtg.android.espresso.ui.countrydetail.model.CountryDetailResponseItem
 
-class CountryDetailAdapter(
+class NationDetailAdapter(
         private var itemList: List<CountryDetailResponseItem>?
 ) :
-        RecyclerView.Adapter<CountryDetailAdapter.ViewHolder>() {
+        RecyclerView.Adapter<NationDetailAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)

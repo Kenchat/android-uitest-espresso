@@ -1,6 +1,6 @@
 package com.kbtg.android.espresso.ui.base
 
-interface IView{
+interface IBaseView{
 
     fun showLoading()
 

@@ -1,21 +1,24 @@
 package com.kbtg.android.espresso
 
 import android.app.Application
-import com.kbtg.android.espresso.di.component.ApplicationComponent
 import com.kbtg.android.espresso.di.component.DaggerApplicationComponent
-import com.kbtg.android.espresso.di.module.AppModule
-import com.kbtg.android.espresso.di.module.NetModule
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 
-open class ApplicationClass : Application() {
+open class ApplicationClass : Application(), HasAndroidInjector {
 
-    private lateinit var applicationComponent: ApplicationComponent
+    @Inject
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
+
+    override fun androidInjector(): AndroidInjector<Any> {
+        return androidInjector
+    }
 
     override fun onCreate() {
         super.onCreate()
-        applicationComponent = DaggerApplicationComponent.builder()
-                .netModule(NetModule())
-                .build()
 
-        applicationComponent.inject(this)
+        DaggerApplicationComponent.factory().create(this).inject(this)
     }
 }

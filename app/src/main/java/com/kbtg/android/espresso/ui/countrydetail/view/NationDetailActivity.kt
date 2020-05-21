@@ -3,37 +3,46 @@ package com.kbtg.android.espresso.ui.countrydetail.view
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kbtg.android.espresso.R
-import com.kbtg.android.espresso.ui.countrydetail.adapter.CountryDetailAdapter
+import com.kbtg.android.espresso.ui.base.BaseActivity
+import com.kbtg.android.espresso.ui.countrydetail.adapter.NationDetailAdapter
 import com.kbtg.android.espresso.ui.countrydetail.model.CountryDetailResponseItem
-import com.kbtg.android.espresso.ui.countrydetail.presenter.CountryDetailPresenterImpl
+import com.kbtg.android.espresso.ui.countrydetail.presenter.NationDetailPresenterImpl
 import kotlinx.android.synthetic.main.country_detail_activity.*
-import kotlinx.android.synthetic.main.page3_activity.loading
+import kotlinx.android.synthetic.main.nations_activity.loading
+import javax.inject.Inject
 
 val COUNTRY_NAME = "COUNTRY_NAME"
 
-class CountryDetailActivity : AppCompatActivity(), ICountryDetailView {
+class NationDetailActivity : BaseActivity(), INationDetailView {
 
-    private lateinit var presenter: CountryDetailPresenterImpl
+    @Inject
+    lateinit var presenter: NationDetailPresenterImpl
 
-    private var summaryDataAdapter: CountryDetailAdapter? = null
+    private var summaryDataAdapter: NationDetailAdapter? = null
     private var listData = ArrayList<CountryDetailResponseItem>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.country_detail_activity)
+    override fun setLayout(): Int {
+        return R.layout.country_detail_activity
+    }
 
-        presenter = CountryDetailPresenterImpl(this)
-
+    override fun init(savedInstanceState: Bundle?) {
         rcvCountryDetailByDate.apply {
-            layoutManager = LinearLayoutManager(this@CountryDetailActivity)
-            summaryDataAdapter = CountryDetailAdapter(listData)
+            layoutManager = LinearLayoutManager(this@NationDetailActivity)
+            summaryDataAdapter = NationDetailAdapter(listData)
             adapter = summaryDataAdapter
         }
         loading.visibility = View.VISIBLE
         presenter.getCountryDate(intent.getStringExtra(COUNTRY_NAME))
+    }
+
+    override fun onStartScreen() {
+
+    }
+
+    override fun stopScreen() {
+        presenter.unbindView()
     }
 
     override fun updateCountryDetailData(dataList: List<CountryDetailResponseItem>) {
@@ -43,7 +52,6 @@ class CountryDetailActivity : AppCompatActivity(), ICountryDetailView {
         listData.clear()
         listData.addAll(dataList)
         summaryDataAdapter?.setItemList(listData)
-
     }
 
     override fun onGetDataFailure() {

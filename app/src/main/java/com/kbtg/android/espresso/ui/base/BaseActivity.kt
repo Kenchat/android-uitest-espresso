@@ -7,13 +7,27 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.kbtg.android.espresso.R
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 
-abstract class BaseActivity : AppCompatActivity(), IView {
+abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector, IBaseView {
 
     protected var mProgressDialog: ProgressDialog? = null
 
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+
+    override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
+
         super.onCreate(savedInstanceState)
+
+
         setContentView(setLayout())
         initialzeProgressDialoge()
         init(savedInstanceState)

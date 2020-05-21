@@ -24,7 +24,7 @@
 
         <activity android:name="com.kbtg.android.espresso.ui.page2.view.Page2Activity" />
         <activity android:name="com.kbtg.android.espresso.ui.nationlist.view.NationListActivity" />
-        <activity android:name="com.kbtg.android.espresso.ui.countrydetail.view.CountryDetailActivity" />
+        <activity android:name="com.kbtg.android.espresso.ui.countrydetail.view.NationDetailActivity" />
     </application>
 
 </manifest>

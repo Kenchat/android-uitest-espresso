@@ -4,41 +4,52 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kbtg.android.espresso.R
+import com.kbtg.android.espresso.ui.base.BaseActivity
 import com.kbtg.android.espresso.ui.countrydetail.view.COUNTRY_NAME
-import com.kbtg.android.espresso.ui.countrydetail.view.CountryDetailActivity
-import com.kbtg.android.espresso.ui.nationlist.adapter.SummaryDataAdapter
+import com.kbtg.android.espresso.ui.countrydetail.view.NationDetailActivity
+import com.kbtg.android.espresso.ui.nationlist.adapter.NationListDataAdapter
 import com.kbtg.android.espresso.ui.nationlist.model.Country
 import com.kbtg.android.espresso.ui.nationlist.presenter.NationListPresenterImpl
-import kotlinx.android.synthetic.main.page3_activity.*
+import kotlinx.android.synthetic.main.nations_activity.*
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 
-class NationListActivity : AppCompatActivity(), INationListView {
+class NationListActivity : BaseActivity(), INationListBaseView {
 
-    private lateinit var presenter: NationListPresenterImpl
+    @Inject
+    lateinit var presenter: NationListPresenterImpl
 
-    private var summaryDataAdapter: SummaryDataAdapter? = null
+    private var nationListDataAdapter: NationListDataAdapter? = null
     private var listData = ArrayList<Country>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.page3_activity)
+    override fun setLayout(): Int {
+        return R.layout.nations_activity
+    }
 
-        presenter = NationListPresenterImpl(this)
-
+    override fun init(savedInstanceState: Bundle?) {
         loading.visibility = View.VISIBLE
+
+        presenter.getNationListData()
 
         rcvCovidSummaryData.apply {
             layoutManager = LinearLayoutManager(this@NationListActivity)
-            summaryDataAdapter = SummaryDataAdapter(listData, onItemClick = { item ->
+            nationListDataAdapter = NationListDataAdapter(listData, onItemClick = { item ->
                 presenter.onItemSelected(item)
             })
-            adapter = summaryDataAdapter
+            adapter = nationListDataAdapter
         }
+    }
+
+    override fun onStartScreen() {
+
+    }
+
+    override fun stopScreen() {
+        presenter.unbindView()
     }
 
     override fun updateDataSummary(dataList: List<Country>) {
@@ -50,7 +61,7 @@ class NationListActivity : AppCompatActivity(), INationListView {
 
         listData.clear()
         listData.addAll(dataList)
-        summaryDataAdapter?.setItemList(listData)
+        nationListDataAdapter?.setItemList(listData)
 
     }
 
@@ -60,13 +71,13 @@ class NationListActivity : AppCompatActivity(), INationListView {
         builder.setTitle("Error")
         builder.setMessage("Get data in failure")
 
-        builder.setPositiveButton(android.R.string.yes) { _, _ -> Unit }
+        builder.setPositiveButton(android.R.string.yes) { _, _ -> onBackPressed() }
 
         builder.show()
     }
 
     override fun goToCountryDetail(countryName: String) {
-        val intent = Intent(this@NationListActivity, CountryDetailActivity::class.java)
+        val intent = Intent(this@NationListActivity, NationDetailActivity::class.java)
         intent.putExtra(COUNTRY_NAME, countryName)
         startActivity(intent)
     }

@@ -2,27 +2,36 @@ package com.kbtg.android.espresso.ui.main.view
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kbtg.android.espresso.R
+import com.kbtg.android.espresso.ui.base.BaseActivity
 import com.kbtg.android.espresso.ui.main.adapter.ListHomeAdapter
 import com.kbtg.android.espresso.ui.main.presenter.MainPresenterImpl
 import com.kbtg.android.espresso.ui.nationlist.view.NationListActivity
-import kotlinx.android.synthetic.main.page1_activity.*
+import kotlinx.android.synthetic.main.main_activity.*
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainControllerView {
+class MainActivity : BaseActivity(), IMainView {
 
     private var adapter: ListHomeAdapter? = null
     private var listData = ArrayList<String>()
 
-    private lateinit var presenter: MainPresenterImpl
+    @Inject
+    lateinit var presenter: MainPresenterImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.page1_activity)
 
         presenter = MainPresenterImpl(this)
 
+
+    }
+
+    override fun setLayout(): Int {
+        return R.layout.main_activity
+    }
+
+    override fun init(savedInstanceState: Bundle?) {
         presenter.initView()
 
         recyclerView.apply {
@@ -39,6 +48,13 @@ class MainActivity : AppCompatActivity(), MainControllerView {
                             })
             adapter = adapter
         }
+    }
+
+    override fun onStartScreen() {
+    }
+
+    override fun stopScreen() {
+        presenter.unbindView()
     }
 
     override fun onUpdateListView(listData: ArrayList<String>) {

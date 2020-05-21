@@ -1,39 +1,35 @@
-package com.kbtg.android.espresso.ui.nationlist.presenter
+package com.kbtg.android.espresso.ui.countrydetail.presenter
 
 import android.util.Log
+import com.kbtg.android.espresso.listcountry.presenter.NationDetailPresenter
 import com.kbtg.android.espresso.network.CovidService
 import com.kbtg.android.espresso.ui.base.BasePreseneter
-import com.kbtg.android.espresso.ui.nationlist.view.INationListBaseView
+import com.kbtg.android.espresso.ui.countrydetail.view.INationDetailView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class NationListPresenterImpl @Inject constructor(var _view: INationListBaseView) : BasePreseneter<INationListBaseView>(_view), INationListPresenter {
+class NationDetailPresenterImpl @Inject constructor(var _view: INationDetailView) : NationDetailPresenter, BasePreseneter<INationDetailView>(_view) {
 
     @Inject
     lateinit var mNetworkApi: CovidService
 
-    init {
+    override fun getCountryDate(countryName: String) {
 
-    }
+        val data = mNetworkApi.getCountryDetailData(countryName)
 
-    override fun getNationListData() {
-        val summaryData = mNetworkApi.getSummaryData()
-        addDisposable(summaryData.subscribeOn(Schedulers.io())
+        addDisposable(data.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                         { response ->
-                            _view.updateDataSummary(response.Countries)
+                            Log.d("SangTH1", response.size.toString())
+                            _view.updateCountryDetailData(response)
                         },
                         { error ->
                             _view.onGetDataFailure()
                             Log.d("SangTH1", "${error.message}")
                         }
                 ))
-    }
-
-    override fun onItemSelected(countryName: String) {
-        _view.goToCountryDetail(countryName)
     }
 }
