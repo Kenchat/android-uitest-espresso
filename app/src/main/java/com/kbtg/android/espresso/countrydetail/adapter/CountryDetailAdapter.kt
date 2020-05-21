@@ -28,9 +28,7 @@ class CountryDetailAdapter(
     }
 
     override fun getItemCount(): Int {
-        return if (itemList!!.isNotEmpty() || itemList != null) {
-            itemList!!.size
-        } else 0
+        return itemList?.size ?: 0
     }
 
     fun setItemList(itemList: List<CountryDetailResponseItem>?) {
