@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    tools:context=".page2.view.Page2Activity">
+    tools:context=".ui.page2.view.Page2Activity">
 
     <Button
         android:id="@+id/btnItem"

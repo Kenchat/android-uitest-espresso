@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".ApplicationClass"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".main.view.MainActivity">
+        <activity android:name="com.kbtg.android.espresso.ui.main.view.MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +22,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".page2.view.Page2Activity" />
-        <activity android:name=".page3.view.Page3Activity" />
-        <activity android:name=".countrydetail.view.CountryDetailActivity" />
+        <activity android:name="com.kbtg.android.espresso.ui.page2.view.Page2Activity" />
+        <activity android:name="com.kbtg.android.espresso.ui.nationlist.view.NationListActivity" />
+        <activity android:name="com.kbtg.android.espresso.ui.countrydetail.view.CountryDetailActivity" />
     </application>
 
 </manifest>

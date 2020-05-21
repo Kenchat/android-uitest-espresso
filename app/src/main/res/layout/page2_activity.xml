@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".page2.view.Page2Activity">
+    tools:context=".ui.page2.view.Page2Activity">
 
     <TextView
         android:id="@+id/tvDatas"

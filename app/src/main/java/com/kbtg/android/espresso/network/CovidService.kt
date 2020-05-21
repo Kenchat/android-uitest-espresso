@@ -1,7 +1,7 @@
 package com.kbtg.android.espresso.network
 
-import com.kbtg.android.espresso.countrydetail.model.CountryDetailResponseItem
-import com.kbtg.android.espresso.page3.model.SummaryResponse
+import com.kbtg.android.espresso.ui.countrydetail.model.CountryDetailResponseItem
+import com.kbtg.android.espresso.ui.nationlist.model.SummaryResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

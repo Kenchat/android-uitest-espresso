@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/summaryItemContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:id="@+id/summaryItemContainer"
     android:background="@drawable/border_background"
     android:padding="15dp">
 
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         app:layout_constraintLeft_toRightOf="@id/tvContryNameLabel"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/tvContryNameLabel" />
 
     <TextView
         android:id="@+id/tvTotalConfirmLabel"
@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="@id/tvCountryName"
         app:layout_constraintLeft_toRightOf="@id/tvContryNameLabel"
-        app:layout_constraintTop_toBottomOf="@id/tvCountryName" />
+        app:layout_constraintTop_toBottomOf="@id/tvCountryName"
+        app:layout_constraintTop_toTopOf="@+id/tvTotalConfirmLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
