@@ -6,6 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ServiceBuilder {
+    var BASE_URL = "http://localhost:8081/"//"https://api.covid19api.com/"
+
     private val okHttpClient = OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
@@ -14,7 +16,7 @@ object ServiceBuilder {
             .build()
 
     private val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.covid19api.com/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
