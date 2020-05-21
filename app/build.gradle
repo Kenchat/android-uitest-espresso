@@ -33,8 +33,27 @@ android {
     }
 
     compileOptions {
+        //Fix this issue: okhttp 4.7.2 BootstrapMethodError: Exception from call site #1 bootstrap method
         targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    flavorDimensions "kbtg"
+
+    productFlavors {
+        def BASE_URL = "BASE_URL"
+
+        dev {
+            applicationId "com.kbtg.android.espresso"
+            dimension "kbtg"
+            buildConfigField "String", BASE_URL, '"https://api.covid19api.com/"'
+        }
+
+        mockWebServer {
+            applicationId "com.kbtg.android.espresso"
+            dimension "kbtg"
+            buildConfigField "String", BASE_URL, '"http://localhost:8081/"'
+        }
     }
 }
 

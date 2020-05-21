@@ -16,8 +16,8 @@ import org.junit.runner.RunWith
 class CountryDetailActivityUITest : BaseMockService() {
 
     //2 commands to run compare screenshot
-    //./gradlew executeScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.countrydetail.CountryDetailActivityUITest
-    //./gradlew executeScreenshotTests -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.countrydetail.CountryDetailActivityUITest
+    //./gradlew mockWebServerDebugExecuteScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.countrydetail.CountryDetailActivityUITest
+    //./gradlew mockWebServerDebugExecuteScreenshotTests -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.countrydetail.CountryDetailActivityUITest
     override fun initDispatcher(): Dispatcher = CountryDetailActivityDispatcher()
 
     @Test

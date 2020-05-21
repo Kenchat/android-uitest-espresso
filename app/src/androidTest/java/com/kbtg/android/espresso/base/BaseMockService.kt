@@ -6,7 +6,6 @@ import androidx.test.rule.ActivityTestRule
 import androidx.test.rule.GrantPermissionRule
 import com.kbtg.android.espresso.idlingresource.CustomIdlingResTestRule
 import com.kbtg.android.espresso.main.view.MainActivity
-import com.kbtg.android.espresso.network.ServiceBuilder
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -35,12 +34,11 @@ abstract class BaseMockService {
     @JvmField
     val grantPermissionRule = GrantPermissionRule.grant(
         "android.permission.READ_EXTERNAL_STORAGE",
-        "android.permission.WRITE_EXTERNAL_STORAGE")
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+    )
 
     @Before
     open fun setup() {
-        //ServiceBuilder.BASE_URL = "http://localhost:8081/"
-        //
         mockWebServer.start(8081)
         dispatcher = initDispatcher()
         mockWebServer.dispatcher = dispatcher
