@@ -32,6 +32,24 @@ android {
         }
     }
 
+    flavorDimensions "kbtg"
+
+    productFlavors {
+        def BASE_URL = "BASE_URL"
+
+        dev {
+            applicationId "com.kbtg.android.espresso"
+            dimension "kbtg"
+            buildConfigField "String", BASE_URL, '"https://api.covid19api.com/"'
+        }
+
+        mockWebServer {
+            applicationId "com.kbtg.android.espresso"
+            dimension "kbtg"
+            buildConfigField "String", BASE_URL, '"http://localhost:8081/"'
+        }
+    }
+
 }
 
 dependencies {
