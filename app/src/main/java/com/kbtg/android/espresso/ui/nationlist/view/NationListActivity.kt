@@ -33,7 +33,6 @@ class NationListActivity : BaseActivity(), INationListBaseView {
     override fun init(savedInstanceState: Bundle?) {
         loading.visibility = View.VISIBLE
 
-        presenter.getNationListData()
 
         rcvCovidSummaryData.apply {
             layoutManager = LinearLayoutManager(this@NationListActivity)
@@ -42,6 +41,7 @@ class NationListActivity : BaseActivity(), INationListBaseView {
             })
             adapter = nationListDataAdapter
         }
+        presenter.getNationListData()
     }
 
     override fun onStartScreen() {
