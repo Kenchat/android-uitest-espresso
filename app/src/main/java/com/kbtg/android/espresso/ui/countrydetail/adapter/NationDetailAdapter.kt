@@ -9,7 +9,7 @@ import com.kbtg.android.espresso.R
 import com.kbtg.android.espresso.ui.countrydetail.model.CountryDetailResponseItem
 
 class NationDetailAdapter(
-        private var itemList: List<CountryDetailResponseItem>?
+        private var itemList: List<CountryDetailResponseItem>
 ) :
         RecyclerView.Adapter<NationDetailAdapter.ViewHolder>() {
 
@@ -20,22 +20,15 @@ class NationDetailAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvConfirmed.text = itemList?.get(position)?.Confirmed.toString()
-        holder.tvRecovered.text = itemList?.get(position)?.Recovered.toString()
-        holder.tvDeaths.text = itemList?.get(position)?.Deaths.toString()
+        holder.tvConfirmed.text = itemList[position].Confirmed.toString()
+        holder.tvRecovered.text = itemList[position].Recovered.toString()
+        holder.tvDeaths.text = itemList[position].Deaths.toString()
 
-        holder.tvDate.text = itemList?.get(position)?.Date.toString()
+        holder.tvDate.text = itemList[position].Date
     }
 
     override fun getItemCount(): Int {
-        return if (itemList!!.isNotEmpty() || itemList != null) {
-            itemList!!.size
-        } else 0
-    }
-
-    fun setItemList(itemList: List<CountryDetailResponseItem>?) {
-        this.itemList = itemList
-        notifyDataSetChanged()
+        return itemList.size ?: 0
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

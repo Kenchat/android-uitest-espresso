@@ -9,5 +9,5 @@ import dagger.Module
 abstract class NationPresenterModule {
 
     @Binds
-    abstract fun verifyNationPresenter(verifyPinPresenterImpl: NationListPresenterImpl?): INationListPresenter?
+    abstract fun provideNationListPresenter(nationListPresenterImpl: NationListPresenterImpl): INationListPresenter?
 }

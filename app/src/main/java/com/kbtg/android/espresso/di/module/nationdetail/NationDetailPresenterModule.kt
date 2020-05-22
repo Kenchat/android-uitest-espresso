@@ -9,5 +9,5 @@ import dagger.Module
 abstract class NationDetailPresenterModule {
 
     @Binds
-    abstract fun countryDetailPresenter(countryDetailPresenterImpl: NationDetailPresenterImpl?): NationDetailPresenter?
+    abstract fun provideNationDetailPresenter(nationDetailPresenterImpl: NationDetailPresenterImpl?): NationDetailPresenter?
 }

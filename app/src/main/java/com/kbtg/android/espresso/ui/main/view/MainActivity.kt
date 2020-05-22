@@ -13,19 +13,10 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity(), IMainView {
 
-    private var adapter: ListHomeAdapter? = null
     private var listData = ArrayList<String>()
 
     @Inject
     lateinit var presenter: MainPresenterImpl
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        presenter = MainPresenterImpl(this)
-
-
-    }
 
     override fun setLayout(): Int {
         return R.layout.main_activity
@@ -37,7 +28,7 @@ class MainActivity : BaseActivity(), IMainView {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter =
-                    ListHomeAdapter(this@MainActivity,
+                    ListHomeAdapter(
                             listData,
                             onItemClick = { item, position ->
                                 presenter.onItemClicked(
@@ -46,11 +37,7 @@ class MainActivity : BaseActivity(), IMainView {
                                         position
                                 )
                             })
-            adapter = adapter
         }
-    }
-
-    override fun onStartScreen() {
     }
 
     override fun stopScreen() {
@@ -60,7 +47,8 @@ class MainActivity : BaseActivity(), IMainView {
     override fun onUpdateListView(listData: ArrayList<String>) {
         this.listData.clear()
         this.listData.addAll(listData)
-        adapter?.setItemList(this.listData)
+
+        recyclerView.adapter?.run { notifyDataSetChanged() }
     }
 
     override fun onShowNextPage(intent: Intent) {

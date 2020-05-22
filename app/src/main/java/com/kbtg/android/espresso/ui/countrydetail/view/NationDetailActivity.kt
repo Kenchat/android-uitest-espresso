@@ -13,14 +13,13 @@ import kotlinx.android.synthetic.main.country_detail_activity.*
 import kotlinx.android.synthetic.main.nations_activity.loading
 import javax.inject.Inject
 
-val COUNTRY_NAME = "COUNTRY_NAME"
+const val COUNTRY_NAME = "COUNTRY_NAME"
 
 class NationDetailActivity : BaseActivity(), INationDetailView {
 
     @Inject
     lateinit var presenter: NationDetailPresenterImpl
 
-    private var summaryDataAdapter: NationDetailAdapter? = null
     private var listData = ArrayList<CountryDetailResponseItem>()
 
     override fun setLayout(): Int {
@@ -30,15 +29,10 @@ class NationDetailActivity : BaseActivity(), INationDetailView {
     override fun init(savedInstanceState: Bundle?) {
         rcvCountryDetailByDate.apply {
             layoutManager = LinearLayoutManager(this@NationDetailActivity)
-            summaryDataAdapter = NationDetailAdapter(listData)
-            adapter = summaryDataAdapter
+            adapter = NationDetailAdapter(listData)
         }
         loading.visibility = View.VISIBLE
         presenter.getCountryDate(intent.getStringExtra(COUNTRY_NAME))
-    }
-
-    override fun onStartScreen() {
-
     }
 
     override fun stopScreen() {
@@ -51,7 +45,7 @@ class NationDetailActivity : BaseActivity(), INationDetailView {
         tvCountryName.text = intent.getStringExtra(COUNTRY_NAME)
         listData.clear()
         listData.addAll(dataList)
-        summaryDataAdapter?.setItemList(listData)
+        rcvCountryDetailByDate.adapter?.run { notifyDataSetChanged() }
     }
 
     override fun onGetDataFailure() {

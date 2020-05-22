@@ -9,5 +9,5 @@ import dagger.Module
 abstract class MainPresenterModule {
 
     @Binds
-    abstract fun mainPresenter(countryDetailPresenterImpl: MainPresenterImpl?): MainPresenter?
+    abstract fun provideMainPresenter(mainPresenterImpl: MainPresenterImpl?): MainPresenter?
 }

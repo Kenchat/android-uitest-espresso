@@ -10,8 +10,8 @@ import com.kbtg.android.espresso.R
 import com.kbtg.android.espresso.ui.nationlist.model.Country
 
 class NationListDataAdapter(
-        private var itemList: List<Country>?,
-        private var onItemClick: ((item: String) -> Unit)? = null
+        private var itemList: List<Country>,
+        private var onItemClick: ((item: String) -> Unit)
 ) :
         RecyclerView.Adapter<NationListDataAdapter.ViewHolder>() {
 
@@ -22,28 +22,21 @@ class NationListDataAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvContryName.text = itemList?.get(position)?.Country ?: ""
-        holder.tvTotalConfirm.text = itemList?.get(position)?.TotalConfirmed.toString()
+        holder.tvCountryName.text = itemList[position].Country
+        holder.tvTotalConfirm.text = itemList[position].TotalConfirmed.toString()
         holder.container.setOnClickListener {
-            onItemClick?.invoke(
-                    itemList?.get(position)?.Country.toString()
+            onItemClick.invoke(
+                    itemList[position].Country
             )
         }
     }
 
     override fun getItemCount(): Int {
-        return if (itemList!!.isNotEmpty() || itemList != null) {
-            itemList!!.size
-        } else 0
-    }
-
-    fun setItemList(itemList: List<Country>?) {
-        this.itemList = itemList
-        notifyDataSetChanged()
+        return itemList.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvContryName: TextView = itemView.findViewById(R.id.tvCountryName)
+        val tvCountryName: TextView = itemView.findViewById(R.id.tvCountryName)
         val tvTotalConfirm: TextView = itemView.findViewById(R.id.tvTotalConfirm)
         val container: ConstraintLayout = itemView.findViewById(R.id.summaryItemContainer)
     }

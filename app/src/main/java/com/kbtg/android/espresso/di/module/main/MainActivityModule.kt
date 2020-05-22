@@ -12,9 +12,9 @@ abstract class MainActivityModule {
 
     @Binds
     @PerActivity
-    abstract fun mainActivity(mainActivity: MainActivity?): Activity?
+    abstract fun provideMainActivity(mainActivity: MainActivity?): Activity?
 
     @Binds
     @PerActivity
-    abstract fun mainView(mainActivity: MainActivity?): IMainView?
+    abstract fun provideMainView(mainActivity: MainActivity?): IMainView?
 }

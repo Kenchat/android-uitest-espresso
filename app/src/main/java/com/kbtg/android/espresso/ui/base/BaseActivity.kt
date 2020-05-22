@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector, IBaseView {
 
-    protected var mProgressDialog: ProgressDialog? = null
+    private var mProgressDialog: ProgressDialog? = null
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
@@ -27,17 +27,15 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector, IBaseView
 
         super.onCreate(savedInstanceState)
 
-
         setContentView(setLayout())
         initialzeProgressDialoge()
         init(savedInstanceState)
     }
 
-    fun initialzeProgressDialoge() {
-        if (mProgressDialog == null) {
-            mProgressDialog = ProgressDialog(this)
-            mProgressDialog!!.isIndeterminate = true
-            mProgressDialog!!.setCancelable(false)
+    private fun initialzeProgressDialoge() {
+        mProgressDialog = ProgressDialog(this).apply {
+            isIndeterminate = true
+            setCancelable(false)
         }
     }
 
@@ -52,34 +50,37 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector, IBaseView
     @LayoutRes
     abstract fun setLayout(): Int
     abstract fun init(savedInstanceState: Bundle?)
-    abstract fun onStartScreen()
     abstract fun stopScreen()
 
-    fun showProgress(msgResId: Int,
-                     keyListener: DialogInterface.OnKeyListener?) {
-        if (isFinishing)
-            return
+    private fun showProgress(msgResId: Int,
+                             keyListener: DialogInterface.OnKeyListener?) {
+        mProgressDialog?.run {
+            if (isFinishing)
+                return
 
-        if (mProgressDialog!!.isShowing) {
-            return
+            if (isShowing) {
+                return
+            }
+
+            if (msgResId != 0) {
+                setMessage(resources.getString(msgResId))
+            }
+
+            if (keyListener != null) {
+                setOnKeyListener(keyListener)
+
+            } else {
+                setCancelable(false)
+            }
+            show()
         }
-
-        if (msgResId != 0) {
-            mProgressDialog?.setMessage(resources.getString(msgResId))
-        }
-
-        if (keyListener != null) {
-            mProgressDialog?.setOnKeyListener(keyListener)
-
-        } else {
-            mProgressDialog?.setCancelable(false)
-        }
-        mProgressDialog?.show()
     }
 
-    fun dismissProgress() {
-        if (mProgressDialog != null && mProgressDialog!!.isShowing) {
-            mProgressDialog?.dismiss()
+    private fun dismissProgress() {
+        mProgressDialog?.run {
+            if (isShowing) {
+                dismiss()
+            }
         }
     }
 
@@ -99,8 +100,8 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector, IBaseView
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
-    protected fun showHttpError(e: Throwable) {
-        loadError(e.localizedMessage)
+    private fun showHttpError(e: Throwable) {
+        e.localizedMessage?.let { loadError(it) }
     }
 
     override fun onStop() {

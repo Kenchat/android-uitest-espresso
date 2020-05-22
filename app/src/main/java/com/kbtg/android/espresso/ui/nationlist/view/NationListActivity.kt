@@ -23,7 +23,6 @@ class NationListActivity : BaseActivity(), INationListBaseView {
     @Inject
     lateinit var presenter: NationListPresenterImpl
 
-    private var nationListDataAdapter: NationListDataAdapter? = null
     private var listData = ArrayList<Country>()
 
     override fun setLayout(): Int {
@@ -33,19 +32,13 @@ class NationListActivity : BaseActivity(), INationListBaseView {
     override fun init(savedInstanceState: Bundle?) {
         loading.visibility = View.VISIBLE
 
-
         rcvCovidSummaryData.apply {
             layoutManager = LinearLayoutManager(this@NationListActivity)
-            nationListDataAdapter = NationListDataAdapter(listData, onItemClick = { item ->
+            adapter = NationListDataAdapter(listData, onItemClick = { item ->
                 presenter.onItemSelected(item)
             })
-            adapter = nationListDataAdapter
         }
         presenter.getNationListData()
-    }
-
-    override fun onStartScreen() {
-
     }
 
     override fun stopScreen() {
@@ -61,7 +54,7 @@ class NationListActivity : BaseActivity(), INationListBaseView {
 
         listData.clear()
         listData.addAll(dataList)
-        nationListDataAdapter?.setItemList(listData)
+        rcvCovidSummaryData.adapter?.run { notifyDataSetChanged() }
 
     }
 

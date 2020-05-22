@@ -2,8 +2,8 @@ package com.kbtg.android.espresso.di.module.nationdetail
 
 import android.app.Activity
 import com.kbtg.android.espresso.di.scope.PerActivity
-import com.kbtg.android.espresso.ui.countrydetail.view.NationDetailActivity
 import com.kbtg.android.espresso.ui.countrydetail.view.INationDetailView
+import com.kbtg.android.espresso.ui.countrydetail.view.NationDetailActivity
 import dagger.Binds
 import dagger.Module
 
@@ -12,9 +12,9 @@ abstract class NationDetailActivityModule {
 
     @Binds
     @PerActivity
-    abstract fun nationCountryDetailActivity(countryDetailActivity: NationDetailActivity?): Activity?
+    abstract fun provideNationDetailActivity(nationDetailActivity: NationDetailActivity?): Activity?
 
     @Binds
     @PerActivity
-    abstract fun provideCountryDetailView(countryDetailActivity: NationDetailActivity?): INationDetailView?
+    abstract fun provideNationDetailView(nationDetailActivity: NationDetailActivity?): INationDetailView?
 }

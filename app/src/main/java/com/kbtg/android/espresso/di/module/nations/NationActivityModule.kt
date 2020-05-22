@@ -12,7 +12,7 @@ abstract class NationActivityModule {
 
     @Binds
     @PerActivity
-    abstract fun nationActivity(nationActivity: NationListActivity?): Activity?
+    abstract fun provideNationActivity(nationActivity: NationListActivity?): Activity?
 
     @Binds
     @PerActivity
