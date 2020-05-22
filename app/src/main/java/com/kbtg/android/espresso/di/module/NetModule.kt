@@ -11,11 +11,13 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 class NetModule {
 
     @Provides
+    @Singleton
     fun getHeaders(): HashMap<String, String> {
         val params = HashMap<String, String>()
         params.put("Content-Type", "application/json")
@@ -23,7 +25,8 @@ class NetModule {
     }
 
     @Provides
-    protected fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+    @Singleton
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor
@@ -31,6 +34,7 @@ class NetModule {
 
 
     @Provides
+    @Singleton
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -39,22 +43,26 @@ class NetModule {
     }
 
     @Provides
+    @Singleton
     fun providesGson(): Gson {
         return GsonBuilder().create()
     }
 
     @Provides
+    @Singleton
     fun provideNetworkService(retrofit: Retrofit): CovidService {
         return retrofit.create(CovidService::class.java)
     }
 
     @Provides
+    @Singleton
     fun getTimeOut(): Int {
         return 15
     }
 
     @Provides
-    protected fun provideOkHttpClientDefault(interceptor: HttpLoggingInterceptor, headers: HashMap<String, String>, timeout: Int): OkHttpClient {
+    @Singleton
+    fun provideOkHttpClientDefault(interceptor: HttpLoggingInterceptor, headers: HashMap<String, String>, timeout: Int): OkHttpClient {
         val okBuilder = OkHttpClient.Builder()
         okBuilder.addInterceptor(interceptor)
         okBuilder.connectTimeout(timeout.toLong(), TimeUnit.SECONDS)

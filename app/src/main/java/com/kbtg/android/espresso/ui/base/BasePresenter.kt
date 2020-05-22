@@ -5,14 +5,14 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 open class BasePresenter<V>(@Volatile var view: V?) {
-    companion object {
+    //companion object {
         var compositeDisposables: CompositeDisposable = CompositeDisposable()
-    }
+    //}
 
     @CallSuper
     fun unbindView() {
-        compositeDisposables.clear()
         compositeDisposables.dispose()
+        compositeDisposables.clear()
         this.view = null
     }
 

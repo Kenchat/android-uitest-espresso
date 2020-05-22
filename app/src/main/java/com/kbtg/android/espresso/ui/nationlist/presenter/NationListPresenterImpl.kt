@@ -19,7 +19,7 @@ class NationListPresenterImpl @Inject constructor(var nationView: INationListBas
         addDisposable(summaryData.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .doOnDispose(Action { nationView.onGetDataFailure() })
+            //.doOnDispose(Action { nationView.onGetDataFailure() })
             .subscribe(
                 { response ->
                     nationView.updateDataSummary(response.Countries)

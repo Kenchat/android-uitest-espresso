@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'shot'
 
 android {
     compileSdkVersion 29
@@ -18,7 +19,6 @@ android {
     }
 
     testOptions {
-        unitTests.returnDefaultValues = true
         //Ignore Unit Test Failures
         unitTests.all {
             setIgnoreFailures(true)
@@ -33,6 +33,29 @@ android {
         }
     }
 
+    compileOptions {
+        //Fix this issue: okhttp 4.7.2 BootstrapMethodError: Exception from call site #1 bootstrap method
+        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    flavorDimensions "kbtg"
+
+    productFlavors {
+        def BASE_URL = "BASE_URL"
+
+        dev {
+            applicationId "com.kbtg.android.espresso"
+            dimension "kbtg"
+            buildConfigField "String", BASE_URL, '"https://api.covid19api.com/"'
+        }
+
+        mockWebServer {
+            applicationId "com.kbtg.android.espresso"
+            dimension "kbtg"
+            buildConfigField "String", BASE_URL, '"http://localhost:8081/"'
+        }
+    }
 }
 
 dependencies {
@@ -45,19 +68,24 @@ dependencies {
 
     implementation "androidx.recyclerview:recyclerview:1.1.0"
 
-    implementation "com.squareup.retrofit2:retrofit:2.6.1"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:2.6.1"
-    implementation "com.squareup.retrofit2:converter-gson:2.6.1"
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
 
-    kapt 'com.google.dagger:dagger-android-processor:2.24'
-    kapt 'com.google.dagger:dagger-compiler:2.24'
-    implementation 'com.google.dagger:dagger-android:2.24'
-    implementation 'com.google.dagger:dagger-android-support:2.24'
+    kapt 'com.google.dagger:dagger-android-processor:2.27'
+    kapt 'com.google.dagger:dagger-compiler:2.27'
+    implementation 'com.google.dagger:dagger-android:2.27'
+    implementation 'com.google.dagger:dagger-android-support:2.27'
 
-    implementation "com.squareup.okhttp3:okhttp:4.2.0"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.2.0"
+    //implementation "com.squareup.okhttp3:okhttp:4.7.2"
+
+    // okhttp3
+    implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:4.7.2"
+    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.7.2'
+    implementation 'org.conscrypt:conscrypt-android:2.2.1'
 
 
     //Fix androidjunit4-class-is-deprecated
