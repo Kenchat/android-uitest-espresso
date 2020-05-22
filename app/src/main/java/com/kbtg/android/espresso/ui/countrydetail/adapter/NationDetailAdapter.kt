@@ -28,7 +28,7 @@ class NationDetailAdapter(
     }
 
     override fun getItemCount(): Int {
-        return itemList.size ?: 0
+        return itemList.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

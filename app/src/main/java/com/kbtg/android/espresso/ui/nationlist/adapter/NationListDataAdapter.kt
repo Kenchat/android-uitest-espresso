@@ -10,14 +10,14 @@ import com.kbtg.android.espresso.R
 import com.kbtg.android.espresso.ui.nationlist.model.Country
 
 class NationListDataAdapter(
-        private var itemList: List<Country>,
-        private var onItemClick: ((item: String) -> Unit)
+    private var itemList: List<Country>,
+    private var onItemClick: ((item: String) -> Unit)
 ) :
-        RecyclerView.Adapter<NationListDataAdapter.ViewHolder>() {
+    RecyclerView.Adapter<NationListDataAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_for_summary_covid_list, parent, false)
+            .inflate(R.layout.item_for_summary_covid_list, parent, false)
         return ViewHolder(v)
     }
 
@@ -26,7 +26,7 @@ class NationListDataAdapter(
         holder.tvTotalConfirm.text = itemList[position].TotalConfirmed.toString()
         holder.container.setOnClickListener {
             onItemClick.invoke(
-                    itemList[position].Country
+                itemList[position].Country
             )
         }
     }

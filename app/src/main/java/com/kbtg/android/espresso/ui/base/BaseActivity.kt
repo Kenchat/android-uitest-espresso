@@ -52,8 +52,10 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector, IBaseView
     abstract fun init(savedInstanceState: Bundle?)
     abstract fun stopScreen()
 
-    private fun showProgress(msgResId: Int,
-                             keyListener: DialogInterface.OnKeyListener?) {
+    private fun showProgress(
+        msgResId: Int,
+        keyListener: DialogInterface.OnKeyListener?
+    ) {
         mProgressDialog?.run {
             if (isFinishing)
                 return

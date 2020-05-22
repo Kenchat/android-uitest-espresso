@@ -28,15 +28,15 @@ class MainActivity : BaseActivity(), IMainView {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter =
-                    ListHomeAdapter(
-                            listData,
-                            onItemClick = { item, position ->
-                                presenter.onItemClicked(
-                                        this@MainActivity,
-                                        item,
-                                        position
-                                )
-                            })
+                ListHomeAdapter(
+                    listData,
+                    onItemClick = { item, position ->
+                        presenter.onItemClicked(
+                            this@MainActivity,
+                            item,
+                            position
+                        )
+                    })
         }
     }
 

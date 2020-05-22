@@ -2,8 +2,8 @@ package com.kbtg.android.espresso.di.module.main
 
 import android.app.Activity
 import com.kbtg.android.espresso.di.scope.PerActivity
-import com.kbtg.android.espresso.ui.main.view.MainActivity
 import com.kbtg.android.espresso.ui.main.view.IMainView
+import com.kbtg.android.espresso.ui.main.view.MainActivity
 import dagger.Binds
 import dagger.Module
 

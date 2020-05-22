@@ -29,7 +29,7 @@ abstract class ActivityBuilder {
 
     @PerActivity
     @ContributesAndroidInjector(modules = [NationActivityModule::class])
-    internal abstract fun nationlistActivityInjector(): NationListActivity
+    internal abstract fun nationListActivityInjector(): NationListActivity
 
     @PerActivity
     @ContributesAndroidInjector(modules = [NationDetailActivityModule::class])

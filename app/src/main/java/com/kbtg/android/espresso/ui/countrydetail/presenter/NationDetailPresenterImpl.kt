@@ -1,6 +1,5 @@
 package com.kbtg.android.espresso.ui.countrydetail.presenter
 
-import com.kbtg.android.espresso.listcountry.presenter.NationDetailPresenter
 import com.kbtg.android.espresso.network.CovidService
 import com.kbtg.android.espresso.ui.base.BasePresenter
 import com.kbtg.android.espresso.ui.countrydetail.view.INationDetailView
@@ -9,7 +8,8 @@ import io.reactivex.functions.Action
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class NationDetailPresenterImpl @Inject constructor(var nationDetailView: INationDetailView) : NationDetailPresenter, BasePresenter<INationDetailView>(nationDetailView) {
+class NationDetailPresenterImpl @Inject constructor(var nationDetailView: INationDetailView) :
+    NationDetailPresenter, BasePresenter<INationDetailView>(nationDetailView) {
 
     @Inject
     lateinit var networkApi: CovidService
@@ -18,16 +18,16 @@ class NationDetailPresenterImpl @Inject constructor(var nationDetailView: INatio
 
         val data = networkApi.getCountryDetailData(countryName)
         addDisposable(data.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .doOnDispose(Action { nationDetailView.onGetDataFailure() })
-                .subscribe(
-                        { response ->
-                            nationDetailView.updateCountryDetailData(response)
-                        },
-                        {
-                            nationDetailView.onGetDataFailure()
-                        }
-                ))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .doOnDispose(Action { nationDetailView.onGetDataFailure() })
+            .subscribe(
+                { response ->
+                    nationDetailView.updateCountryDetailData(response)
+                },
+                {
+                    nationDetailView.onGetDataFailure()
+                }
+            ))
     }
 }

@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kbtg.android.espresso.R
 
 class ListHomeAdapter(
-        private var itemList: List<String>,
-        private var onItemClick: ((item: String, position: Int) -> Unit)
+    private var itemList: List<String>,
+    private var onItemClick: ((item: String, position: Int) -> Unit)
 ) : RecyclerView.Adapter<ListHomeAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
-                .inflate(R.layout.recycler_view_item, parent, false)
+            .inflate(R.layout.recycler_view_item, parent, false)
         return ViewHolder(v)
     }
 
@@ -22,14 +22,14 @@ class ListHomeAdapter(
         holder.btnData.text = "Item ${itemList.get(position)}"
         holder.btnData.setOnClickListener {
             onItemClick.invoke(
-                    itemList[position],
-                    position
+                itemList[position],
+                position
             )
         }
     }
 
     override fun getItemCount(): Int {
-        return itemList.size ?: 0
+        return itemList.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
