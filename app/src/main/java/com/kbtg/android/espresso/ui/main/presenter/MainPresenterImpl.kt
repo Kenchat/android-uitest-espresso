@@ -8,11 +8,11 @@ import com.kbtg.android.espresso.ui.page2.view.DATA
 import com.kbtg.android.espresso.ui.page2.view.Page2Activity
 import javax.inject.Inject
 
-class MainPresenterImpl @Inject constructor(var mainView: IMainView) :
+class MainPresenterImpl @Inject constructor(private var mainView: IMainView) :
     BasePresenter<IMainView>(mainView), MainPresenter {
 
     override fun initView() {
-        var listData = ArrayList<String>()
+        val listData = ArrayList<String>()
         for (i in 1..5) {
             listData.add(i.toString())
         }

@@ -1,5 +1,6 @@
 package com.kbtg.android.espresso.ui.main.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +19,9 @@ class ListHomeAdapter(
         return ViewHolder(v)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.btnData.text = "Item ${itemList.get(position)}"
+        holder.btnData.text = "Item ${itemList[position]}"
         holder.btnData.setOnClickListener {
             onItemClick.invoke(
                 itemList[position],

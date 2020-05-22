@@ -11,7 +11,6 @@ import com.kbtg.android.espresso.base.CommonViewAction
 object ScreenShotUtil {
     private const val WAIT_FOR_CAPTURE_SCREENSHOT = 200L
     private var numericalOrder = 1
-    private var mIndex = -1
     private const val FORMAT_SCREEN_NAME = "%d_%s"
 
     fun captureScreen(screenName: String) {

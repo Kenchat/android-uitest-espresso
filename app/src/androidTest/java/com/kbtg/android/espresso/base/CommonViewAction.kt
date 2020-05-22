@@ -36,10 +36,10 @@ object CommonViewAction {
 
     // maximum time in milliseconds to wait for a view visible
     private const val maximumWaitedTime = 10000L
-    const val CONSTRAINT_LAYOUT = "androidx.constraintlayout.widget.ConstraintLayout"
+    private const val CONSTRAINT_LAYOUT = "androidx.constraintlayout.widget.ConstraintLayout"
 
-    const val WAIT_VIEW_VISIBLE = "waitViewVisible"
-    const val PERFORM_VIEW_VISIBLE = "performViewVisible"
+    private const val WAIT_VIEW_VISIBLE = "waitViewVisible"
+    private const val PERFORM_VIEW_VISIBLE = "performViewVisible"
 
     fun clickChildViewWithId(id: Int?): ViewAction {
         return object : ViewAction {
@@ -53,7 +53,7 @@ object CommonViewAction {
 
             override fun perform(uiController: UiController, view: View) {
                 if (id == null) return
-                val child: View = view.findViewById<View>(id)
+                val child: View = view.findViewById(id)
                 child.performClick()
             }
         }
@@ -107,7 +107,7 @@ object CommonViewAction {
 
                 val item: View
                 try {
-                    item = (view as RecyclerView)[positionItem]
+                    item = view[positionItem]
                 } catch (e: IndexOutOfBoundsException) {
                     e.printStackTrace()
                     Log.d(
@@ -121,7 +121,7 @@ object CommonViewAction {
                 var child: View? = null
 
                 while ((System.currentTimeMillis() - startTime) <= maximumWaitedTime) {
-                    child = item.findViewById<View>(childId)
+                    child = item.findViewById(childId)
 
                     if (child != null) return
 
@@ -162,7 +162,7 @@ object CommonViewAction {
 
                 val item: View
                 try {
-                    item = (view as RecyclerView)[positionItem]
+                    item = view[positionItem]
                 } catch (e: IndexOutOfBoundsException) {
                     e.printStackTrace()
                     Log.d(
@@ -176,7 +176,7 @@ object CommonViewAction {
                 var child: View? = null
 
                 while ((System.currentTimeMillis() - startTime) <= maximumWaitedTime) {
-                    child = item.findViewById<View>(childId)
+                    child = item.findViewById(childId)
                     if (child != null) {
                         child.performClick()
                         return
@@ -193,12 +193,12 @@ object CommonViewAction {
     @JvmStatic
     fun withViewAtPosition(position: Int, itemMatcher: Matcher<View>): Matcher<View> {
         return object :
-            BoundedMatcher<View, RecyclerView>(androidx.recyclerview.widget.RecyclerView::class.java) {
+            BoundedMatcher<View, RecyclerView>(RecyclerView::class.java) {
             override fun describeTo(description: Description) {
                 itemMatcher.describeTo(description)
             }
 
-            override fun matchesSafely(recyclerView: androidx.recyclerview.widget.RecyclerView): Boolean {
+            override fun matchesSafely(recyclerView: RecyclerView): Boolean {
                 val viewHolder = recyclerView.findViewHolderForAdapterPosition(position)
                 return viewHolder != null && itemMatcher.matches(viewHolder.itemView)
             }
@@ -213,7 +213,7 @@ object CommonViewAction {
         positionOfViewInParentView: Int
     ): ViewInteraction = Espresso.onView(
         Matchers.allOf(
-            ViewMatchers.withClassName(Matchers.`is`<String>(className)),
+            ViewMatchers.withClassName(`is`(className)),
             getChildAtPosition(ViewMatchers.withId(parentViewId), positionOfViewInParentView)
         )
     )
@@ -326,7 +326,7 @@ object CommonViewAction {
         Matchers.allOf(
             ViewMatchers.withId(viewId),
             getChildAtPosition(
-                ViewMatchers.withClassName(`is`<String>(CONSTRAINT_LAYOUT)),
+                ViewMatchers.withClassName(`is`(CONSTRAINT_LAYOUT)),
                 positionOfViewInParentView
             )
         )
@@ -342,7 +342,7 @@ object CommonViewAction {
                 Matchers.allOf(
                     ViewMatchers.withId(parentViewId),
                     getChildAtPosition(
-                        ViewMatchers.withClassName(`is`<String>(CONSTRAINT_LAYOUT)),
+                        ViewMatchers.withClassName(`is`(CONSTRAINT_LAYOUT)),
                         positionOfParentViewInGrandParentView
                     )
                 ), positionOfViewInParentView
@@ -430,7 +430,7 @@ object CommonViewAction {
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.d("LOG", "CommonViewAcrtion | getCurrentActivityOrNull() | e: ${e.message}")
+            Log.d("LOG", "CommonViewAction | getCurrentActivityOrNull() | e: ${e.message}")
         }
         return activity[0]
     }

@@ -1,5 +1,6 @@
 package com.kbtg.android.espresso.ui.nationlist.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -45,12 +46,13 @@ class NationListActivity : BaseActivity(), INationListBaseView {
         presenter.unbindView()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun updateDataSummary(dataList: List<Country>) {
         loading.visibility = View.GONE
         val date = Calendar.getInstance().time
         val formatter = SimpleDateFormat.getDateTimeInstance()
-        val formatedDate = formatter.format(date)
-        tvTime.text = "Time: $formatedDate"
+        val formattedDate = formatter.format(date)
+        tvTime.text = "Time: $formattedDate"
 
         listData.clear()
         listData.addAll(dataList)

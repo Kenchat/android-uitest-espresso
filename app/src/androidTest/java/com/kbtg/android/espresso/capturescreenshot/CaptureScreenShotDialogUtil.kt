@@ -1,7 +1,6 @@
 package com.kbtg.android.espresso.capturescreenshot
 
 import android.app.Activity
-import android.content.Context
 import android.graphics.Rect
 import android.os.IBinder
 import android.view.View
@@ -11,7 +10,6 @@ import java.lang.reflect.Field
 import java.util.*
 
 object CaptureScreenShotDialogUtil {
-    private const val TAG = "LOG"
     private const val GLOBAL = "mGlobal"
     private const val ROOTS = "mRoots"
     private const val PARAMS = "mParams"
@@ -28,15 +26,13 @@ object CaptureScreenShotDialogUtil {
 
         for (root: ViewRootData in viewRoots) {
             if (!root.isDialogType) continue
-            val childView: View? = root.view.findViewById(childId)
-            if (childView == null) continue
+            root.view.findViewById(childId) ?: continue
             Screenshot.snap(root.view).setName(screenName).record()
         }
     }
 
-    internal fun getRootViews(activity: Activity): List<ViewRootData> {
-        val globalWindowManager: Any?
-        globalWindowManager = getFieldValue(GLOBAL, activity.windowManager)
+    private fun getRootViews(activity: Activity): List<ViewRootData> {
+        val globalWindowManager: Any? = getFieldValue(GLOBAL, activity.windowManager)
 
         val rootObjects: Any? = getFieldValue(ROOTS, globalWindowManager)
         val paramsObject: Any? = getFieldValue(PARAMS, globalWindowManager)
@@ -76,7 +72,7 @@ object CaptureScreenShotDialogUtil {
             val left = location[0]
             val top = location[1]
             val area = Rect(left, top, left + rootView.width, top + rootView.height)
-            rootViews.add(ViewRootData(rootView, area, params[i]))
+            rootViews.add(ViewRootData(rootView, params[i]))
         }
         return rootViews
     }
@@ -145,14 +141,9 @@ object CaptureScreenShotDialogUtil {
      * screenshot capturing to enable better client code exception handling.
      */
     private class UnableToTakeScreenshotException : RuntimeException {
-        constructor(detailMessage: String) : super(detailMessage) {}
-        constructor(detailMessage: String, exception: Exception) : super(
-            detailMessage,
-            extractException(exception)
-        ) {
-        }
+        constructor(detailMessage: String) : super(detailMessage)
 
-        constructor(ex: Exception) : super(extractException(ex)) {}
+        constructor(ex: Exception) : super(extractException(ex))
 
         companion object {
             /**
@@ -169,8 +160,7 @@ object CaptureScreenShotDialogUtil {
 
     internal class ViewRootData(
         val view: View,
-        val winFrame: Rect,
-        val layoutParams: WindowManager.LayoutParams
+        private val layoutParams: WindowManager.LayoutParams
     ) {
         val isDialogType: Boolean
             get() = layoutParams.type == WindowManager.LayoutParams.TYPE_APPLICATION
@@ -180,10 +170,6 @@ object CaptureScreenShotDialogUtil {
 
         val windowToken: IBinder?
             get() = layoutParams.token
-
-        fun context(): Context {
-            return view.context
-        }
 
     } //endregion
 }
