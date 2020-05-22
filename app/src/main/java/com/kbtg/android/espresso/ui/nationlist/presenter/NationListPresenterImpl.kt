@@ -4,7 +4,6 @@ import com.kbtg.android.espresso.network.CovidService
 import com.kbtg.android.espresso.ui.base.BasePresenter
 import com.kbtg.android.espresso.ui.nationlist.view.INationListBaseView
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Action
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -19,7 +18,6 @@ class NationListPresenterImpl @Inject constructor(var nationView: INationListBas
         addDisposable(summaryData.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            //.doOnDispose(Action { nationView.onGetDataFailure() })
             .subscribe(
                 { response ->
                     nationView.updateDataSummary(response.Countries)

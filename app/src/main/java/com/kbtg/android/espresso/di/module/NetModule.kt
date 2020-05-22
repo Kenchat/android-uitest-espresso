@@ -2,6 +2,7 @@ package com.kbtg.android.espresso.di.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.kbtg.android.espresso.BuildConfig.BASE_URL
 import com.kbtg.android.espresso.network.CovidService
 import dagger.Module
 import dagger.Provides
@@ -39,7 +40,7 @@ class NetModule {
         return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
-                .baseUrl("https://api.covid19api.com/").build()
+                .baseUrl(BASE_URL).build()
     }
 
     @Provides
