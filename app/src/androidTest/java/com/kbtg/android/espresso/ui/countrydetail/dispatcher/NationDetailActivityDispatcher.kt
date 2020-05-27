@@ -1,4 +1,4 @@
-package com.kbtg.android.espresso.countrydetail.dispatcher
+package com.kbtg.android.espresso.ui.countrydetail.dispatcher
 
 import android.util.Log
 import com.kbtg.android.espresso.base.DispatcherUtil
@@ -9,7 +9,7 @@ import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
 
-class CountryDetailActivityDispatcher : Dispatcher() {
+class NationDetailActivityDispatcher : Dispatcher() {
 
     override fun dispatch(request: RecordedRequest): MockResponse {
         Log.d(

@@ -32,7 +32,7 @@ class NationDetailActivity : BaseActivity(), INationDetailView {
             adapter = NationDetailAdapter(listData)
         }
         loading.visibility = View.VISIBLE
-        presenter.getCountryDate(intent.getStringExtra(COUNTRY_NAME))
+        presenter.getCountryDate(intent.getStringExtra(COUNTRY_NAME) ?: "")
     }
 
     override fun stopScreen() {

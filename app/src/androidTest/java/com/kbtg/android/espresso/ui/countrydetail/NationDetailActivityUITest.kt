@@ -1,4 +1,4 @@
-package com.kbtg.android.espresso.countrydetail
+package com.kbtg.android.espresso.ui.countrydetail
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
@@ -6,19 +6,19 @@ import com.kbtg.android.espresso.R
 import com.kbtg.android.espresso.base.BaseMockService
 import com.kbtg.android.espresso.base.CommonViewAction
 import com.kbtg.android.espresso.capturescreenshot.ScreenShotUtil
-import com.kbtg.android.espresso.countrydetail.dispatcher.CountryDetailActivityDispatcher
+import com.kbtg.android.espresso.ui.countrydetail.dispatcher.NationDetailActivityDispatcher
 import okhttp3.mockwebserver.Dispatcher
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class CountryDetailActivityUITest : BaseMockService() {
+class NationDetailActivityUITest : BaseMockService() {
 
     //2 command lines to run compare screenshot
-    //./gradlew mockWebServerDebugExecuteScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.countrydetail.CountryDetailActivityUITest
-    //./gradlew mockWebServerDebugExecuteScreenshotTests -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.countrydetail.CountryDetailActivityUITest
-    override fun initDispatcher(): Dispatcher = CountryDetailActivityDispatcher()
+    //./gradlew mockWebServerDebugExecuteScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.ui.countrydetail.NationDetailActivityUITest
+    //./gradlew mockWebServerDebugExecuteScreenshotTests -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.ui.countrydetail.NationDetailActivityUITest
+    override fun initDispatcher(): Dispatcher = NationDetailActivityDispatcher()
 
     @Test
     fun verify_country_detail_activity() {
