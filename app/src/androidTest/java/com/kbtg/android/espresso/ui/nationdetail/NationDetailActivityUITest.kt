@@ -5,7 +5,6 @@ import androidx.test.filters.LargeTest
 import com.kbtg.android.espresso.R
 import com.kbtg.android.espresso.base.BaseMockService
 import com.kbtg.android.espresso.base.CommonViewAction
-import com.kbtg.android.espresso.capturescreenshot.ScreenShotUtil
 import com.kbtg.android.espresso.ui.nationdetail.dispatcher.NationDetailActivityDispatcher
 import okhttp3.mockwebserver.Dispatcher
 import org.junit.Test
@@ -15,9 +14,13 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class NationDetailActivityUITest : BaseMockService() {
 
+    private val waitForScrolling = 2000L
+    private val positionThaiLand = 167
+    private val positionEndList = 9
+
     //2 command lines to run compare screenshot
-    //./gradlew mockWebServerDebugExecuteScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.ui.countrydetail.NationDetailActivityUITest
-    //./gradlew mockWebServerDebugExecuteScreenshotTests -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.ui.countrydetail.NationDetailActivityUITest
+    //./gradlew mockWebServerDebugExecuteScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.ui.nationdetail.NationDetailActivityUITest
+    //./gradlew mockWebServerDebugExecuteScreenshotTests -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.ui.nationdetail.NationDetailActivityUITest
     override fun initDispatcher(): Dispatcher = NationDetailActivityDispatcher()
 
     @Test
@@ -25,36 +28,19 @@ class NationDetailActivityUITest : BaseMockService() {
         //NationListActivity
         val rcvCovidSummaryData = CommonViewAction.getView(R.id.rcvCovidSummaryData)
 
-        CommonViewAction.waitViewVisible(rcvCovidSummaryData) {
-            //wait for all items are shown on recyclerview
-            Thread.sleep(1000)
-            ScreenShotUtil.captureScreen("NationListActivity")
-        }
-
         CommonViewAction.performViewVisible(
-            rcvCovidSummaryData, CommonViewAction.scrollRecyclerviewToPosition(9)
+            rcvCovidSummaryData, CommonViewAction.scrollRecyclerviewToPosition(positionThaiLand)
         )
 
-        //wait for recyclerView scroll to position 9
-        Thread.sleep(1000)
-        ScreenShotUtil.captureScreen("NationListActivity-scrolled")
+        CommonViewAction.performClickOnRecyclerView(rcvCovidSummaryData, positionThaiLand)
 
-        CommonViewAction.performClickOnRecyclerView(rcvCovidSummaryData, 8)
-
-
+        //NationDetailActivity
         val rcvCountryDetailByDate = CommonViewAction.getView(R.id.rcvCountryDetailByDate)
-        CommonViewAction.waitViewVisible(rcvCountryDetailByDate) {
-            //wait for all items are shown on recyclerview
-            Thread.sleep(1000)
-            ScreenShotUtil.captureScreen("CountryDetailActivity")
-        }
 
+        Thread.sleep(waitForScrolling)
         CommonViewAction.performViewVisible(
-            rcvCountryDetailByDate, CommonViewAction.scrollRecyclerviewToPosition(120)
+            rcvCountryDetailByDate, CommonViewAction.scrollRecyclerviewToPosition(positionEndList)
         )
-
-        //wait for recyclerView scroll to latest position
-        Thread.sleep(4000)
-        ScreenShotUtil.captureScreen("CountryDetailActivity-scrolled")
+        Thread.sleep(waitForScrolling)
     }
 }

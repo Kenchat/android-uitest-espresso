@@ -21,7 +21,7 @@ class NationDetailPresenterImpl @Inject constructor(private var nationDetailView
             .subscribeOn(Schedulers.io())
             .subscribe(
                 { response ->
-                    nationDetailView.updateCountryDetailData(response.reversed())
+                    nationDetailView.updateCountryDetailData(response.reversed().take(10))
                 },
                 {
                     nationDetailView.onGetDataFailure()

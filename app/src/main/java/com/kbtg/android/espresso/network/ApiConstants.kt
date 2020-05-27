@@ -3,5 +3,5 @@ package com.kbtg.android.espresso.network
 object ApiConstants {
     const val API_SUMMARY = "/summary"
     const val API_DAYONE_COUNTRY = "/dayone/country/{country}"
-    const val API_DAYONE_COUNTRY_AUSTRALIA = "/dayone/country/Australia"
+    const val API_DAYONE_COUNTRY_THAILAND = "/dayone/country/Thailand"
 }
