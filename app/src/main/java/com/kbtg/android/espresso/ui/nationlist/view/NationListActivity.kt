@@ -50,7 +50,7 @@ class NationListActivity : BaseActivity(), INationListBaseView {
         loading.visibility = View.GONE
 
         val current = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("E dd-MM-yyyy")
+        val formatter = DateTimeFormatter.ofPattern("E dd-MMM-yyyy hh:mm:ss a")
         val formatted = current.format(formatter)
         tvTime.text = "Time: $formatted"
 
