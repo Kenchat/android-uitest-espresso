@@ -15,16 +15,16 @@ class NationListPresenterImpl @Inject constructor(private var nationView: INatio
     override fun getNationListData() {
         val summaryData = networkApi.getSummaryData()
         addDisposable(summaryData.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(
-                        { response ->
-                            nationView.updateDataSummary(response.Countries.take(10))
-                        },
-                        {
-                            nationView.onGetDataFailure()
-                        }
-                ))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(
+                { response ->
+                    nationView.updateDataSummary(response.Countries.take(10))
+                },
+                {
+                    nationView.onGetDataFailure()
+                }
+            ))
     }
 
     override fun onItemSelected(countryName: String) {

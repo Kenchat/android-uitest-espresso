@@ -32,13 +32,13 @@ class CountryDetailActivityUITest : BaseMockService() {
         }
 
         CommonViewAction.performViewVisible(
-            rcvCovidSummaryData, CommonViewAction.scrollRecyclerviewToPosition(167)
+            rcvCovidSummaryData, CommonViewAction.scrollRecyclerviewToPosition(10)
         )
 
         Thread.sleep(4000)
         ScreenShotUtil.captureScreen("NationListActivity-scrolled")
 
-        CommonViewAction.performClickOnRecyclerView(rcvCovidSummaryData, 167)
+        CommonViewAction.performClickOnRecyclerView(rcvCovidSummaryData, 9)
 
 
         val rcvCountryDetailByDate = CommonViewAction.getView(R.id.rcvCountryDetailByDate)
