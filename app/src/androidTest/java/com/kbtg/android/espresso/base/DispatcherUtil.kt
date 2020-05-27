@@ -31,7 +31,7 @@ object DispatcherUtil {
         }
     }
 
-    fun readJsonFileToString(jsonFile: String): String {
+    private fun readJsonFileToString(jsonFile: String): String {
         val json: InputStream = this.javaClass.classLoader!!.getResourceAsStream(jsonFile)
         return convertStreamToString(json)
     }
