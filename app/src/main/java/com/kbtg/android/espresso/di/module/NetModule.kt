@@ -38,9 +38,9 @@ class NetModule {
     @Singleton
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(okHttpClient)
-                .baseUrl(BASE_URL).build()
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(okHttpClient)
+            .baseUrl(BASE_URL).build()
     }
 
     @Provides
@@ -63,7 +63,11 @@ class NetModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClientDefault(interceptor: HttpLoggingInterceptor, headers: HashMap<String, String>, timeout: Int): OkHttpClient {
+    fun provideOkHttpClientDefault(
+        interceptor: HttpLoggingInterceptor,
+        headers: HashMap<String, String>,
+        timeout: Int
+    ): OkHttpClient {
         val okBuilder = OkHttpClient.Builder()
         okBuilder.addInterceptor(interceptor)
         okBuilder.connectTimeout(timeout.toLong(), TimeUnit.SECONDS)
