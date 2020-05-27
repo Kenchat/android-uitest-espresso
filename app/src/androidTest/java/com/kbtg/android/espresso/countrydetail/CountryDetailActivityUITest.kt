@@ -22,21 +22,7 @@ class CountryDetailActivityUITest : BaseMockService() {
 
     @Test
     fun verify_country_detail_activity() {
-
-        //MainActivity
-        val recyclerView = CommonViewAction.getView(R.id.recyclerView)
-
-        CommonViewAction.waitViewVisible(recyclerView) {
-            ScreenShotUtil.captureScreen("MainActivity")
-        }
-
-        //Click on first item in MainActivity
-        CommonViewAction.performViewVisible(
-            recyclerView,
-            CommonViewAction.clickChildViewInRecyclerviewAtPosition(0, R.id.btnItem)
-        )
-
-        //Page3Activity
+        //NationListActivity
         val rcvCovidSummaryData = CommonViewAction.getView(R.id.rcvCovidSummaryData)
 
         CommonViewAction.waitViewVisible(rcvCovidSummaryData) {

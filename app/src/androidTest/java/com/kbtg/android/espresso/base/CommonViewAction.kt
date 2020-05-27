@@ -3,7 +3,6 @@ package com.kbtg.android.espresso.base
 import android.app.Activity
 import android.util.Log
 import android.view.View
-import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.*
 import androidx.test.espresso.action.ViewActions
@@ -18,7 +17,7 @@ import org.hamcrest.Matcher
 import java.util.concurrent.TimeoutException
 
 object CommonViewAction {
-    const val TAG = "LOG"
+    private const val TAG = "LOG"
     private const val sleepTime = 1000L
 
     // maximum time in milliseconds to wait for a view visible
@@ -42,60 +41,6 @@ object CommonViewAction {
                 view.post {
                     view.smoothScrollToPosition(position)
                 }
-            }
-        }
-    }
-
-    fun clickChildViewInRecyclerviewAtPosition(positionItem: Int?, childId: Int?): ViewAction {
-        return object : ViewAction {
-            override fun getConstraints(): Matcher<View>? {
-                return ViewMatchers.isAssignableFrom(View::class.java)
-            }
-
-            override fun getDescription(): String {
-                return "Click on a child view with specified id."
-            }
-
-            override fun perform(uiController: UiController, view: View) {
-                if (view !is RecyclerView) {
-                    throwException("CommonViewAction | clickChildViewInRecyclerviewAtPosition() | view $view is not recyclerview")
-                    return
-                } // return if parentView not recyclerview
-                if (positionItem == null) {
-                    throwException("CommonViewAction | clickChildViewInRecyclerviewAtPosition() | position of item is null")
-                    return
-                }
-                if (childId == null) {
-                    throwException("CommonViewAction | clickChildViewInRecyclerviewAtPosition() | id of child view in recyclerview is null")
-                    return
-                }
-
-                val item: View
-                try {
-                    item = view[positionItem]
-                } catch (e: IndexOutOfBoundsException) {
-                    e.printStackTrace()
-                    Log.d(
-                        TAG,
-                        "CommonViewAction | clickChildViewInRecyclerviewAtPosition() | error: ${e.message}"
-                    )
-                    throw  IndexOutOfBoundsException(e.message)
-                }
-
-                val startTime: Long = System.currentTimeMillis()
-                var child: View?
-
-                while ((System.currentTimeMillis() - startTime) <= maximumWaitedTime) {
-                    child = item.findViewById(childId)
-                    if (child != null) {
-                        child.performClick()
-                        return
-                    }
-
-                    Thread.sleep(sleepTime)
-                }
-                // throw exception after 10 seconds couldn't find childView
-                throwException("CommonViewAction | waitChildViewInRecyclerviewVisible() | can't find view in item with position $positionItem in the recyclerview $view")
             }
         }
     }

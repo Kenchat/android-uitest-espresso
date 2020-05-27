@@ -5,7 +5,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import androidx.test.rule.GrantPermissionRule
 import com.kbtg.android.espresso.idlingresource.CustomIdlingResTestRule
-import com.kbtg.android.espresso.ui.main.view.MainActivity
+import com.kbtg.android.espresso.ui.nationlist.view.NationListActivity
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -18,7 +18,7 @@ abstract class BaseMockService {
     private lateinit var dispatcher: Dispatcher
     abstract fun initDispatcher(): Dispatcher
 
-    private var activityTestRule = ActivityTestRule(MainActivity::class.java)
+    private var activityTestRule = ActivityTestRule(NationListActivity::class.java)
 
     //use @JvmField to fix: Delegate runner 'androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner' for AndroidJUnit4 could not be loaded.
     @Rule
@@ -40,7 +40,7 @@ abstract class BaseMockService {
 
         val intent = Intent(
             InstrumentationRegistry.getInstrumentation().targetContext,
-            MainActivity::class.java
+            NationListActivity::class.java
         )
         activityTestRule.launchActivity(intent)
 
