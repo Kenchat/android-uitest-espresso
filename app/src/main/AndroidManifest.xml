@@ -27,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kbtg.android.espresso.ui.countrydetail.view.NationDetailActivity" />
+        <activity android:name="com.kbtg.android.espresso.ui.nationdetail.view.NationDetailActivity" />
     </application>
 
 </manifest>

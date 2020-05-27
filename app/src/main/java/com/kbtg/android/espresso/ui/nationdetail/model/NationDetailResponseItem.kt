@@ -1,6 +1,6 @@
-package com.kbtg.android.espresso.ui.countrydetail.model
+package com.kbtg.android.espresso.ui.nationdetail.model
 
-data class CountryDetailResponseItem(
+data class NationDetailResponseItem(
     val Active: Int,
     val City: String,
     val CityCode: String,

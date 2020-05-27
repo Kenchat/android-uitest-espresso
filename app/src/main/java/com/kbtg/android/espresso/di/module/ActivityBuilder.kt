@@ -5,7 +5,7 @@ import com.kbtg.android.espresso.ApplicationClass
 import com.kbtg.android.espresso.di.module.nationdetail.NationDetailActivityModule
 import com.kbtg.android.espresso.di.module.nations.NationActivityModule
 import com.kbtg.android.espresso.di.scope.PerActivity
-import com.kbtg.android.espresso.ui.countrydetail.view.NationDetailActivity
+import com.kbtg.android.espresso.ui.nationdetail.view.NationDetailActivity
 import com.kbtg.android.espresso.ui.nationlist.view.NationListActivity
 import dagger.Binds
 import dagger.Module

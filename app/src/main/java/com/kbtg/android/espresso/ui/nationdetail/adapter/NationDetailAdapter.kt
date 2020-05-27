@@ -1,4 +1,4 @@
-package com.kbtg.android.espresso.ui.countrydetail.adapter
+package com.kbtg.android.espresso.ui.nationdetail.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kbtg.android.espresso.R
-import com.kbtg.android.espresso.ui.countrydetail.model.CountryDetailResponseItem
+import com.kbtg.android.espresso.ui.nationdetail.model.NationDetailResponseItem
 import java.text.SimpleDateFormat
 import java.util.*
 
 class NationDetailAdapter(
-    private var itemList: List<CountryDetailResponseItem>
+    private var itemList: List<NationDetailResponseItem>
 ) :
     RecyclerView.Adapter<NationDetailAdapter.ViewHolder>() {
 

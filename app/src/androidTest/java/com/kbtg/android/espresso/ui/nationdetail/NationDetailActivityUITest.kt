@@ -1,4 +1,4 @@
-package com.kbtg.android.espresso.ui.countrydetail
+package com.kbtg.android.espresso.ui.nationdetail
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
@@ -6,7 +6,7 @@ import com.kbtg.android.espresso.R
 import com.kbtg.android.espresso.base.BaseMockService
 import com.kbtg.android.espresso.base.CommonViewAction
 import com.kbtg.android.espresso.capturescreenshot.ScreenShotUtil
-import com.kbtg.android.espresso.ui.countrydetail.dispatcher.NationDetailActivityDispatcher
+import com.kbtg.android.espresso.ui.nationdetail.dispatcher.NationDetailActivityDispatcher
 import okhttp3.mockwebserver.Dispatcher
 import org.junit.Test
 import org.junit.runner.RunWith
