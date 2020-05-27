@@ -26,8 +26,8 @@ class NationDetailAdapter(
         holder.tvRecovered.text = itemList[position].Recovered.toString()
         holder.tvDeaths.text = itemList[position].Deaths.toString()
 
-        val format1 = SimpleDateFormat("yyyy-MM-dd")
-        val format2 = SimpleDateFormat("E dd-MM-yyyy")
+        val format1 = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+        val format2 = SimpleDateFormat("E dd-MM-yyyy", Locale.US)
         val date: Date = format1.parse(itemList[position].Date)
 
         holder.tvDate.text = format2.format(date)
