@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class NationListPresenterImpl @Inject constructor(var nationView: INationListBaseView) :
-    BasePresenter<INationListBaseView>(nationView), INationListPresenter {
+        BasePresenter<INationListBaseView>(nationView), INationListPresenter {
 
     @Inject
     lateinit var networkApi: CovidService
@@ -16,16 +16,16 @@ class NationListPresenterImpl @Inject constructor(var nationView: INationListBas
     override fun getNationListData() {
         val summaryData = networkApi.getSummaryData()
         addDisposable(summaryData.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                { response ->
-                    nationView.updateDataSummary(response.Countries)
-                },
-                {
-                    nationView.onGetDataFailure()
-                }
-            ))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(
+                        { response ->
+                            nationView.updateDataSummary(response.Countries.take(10))
+                        },
+                        {
+                            nationView.onGetDataFailure()
+                        }
+                ))
     }
 
     override fun onItemSelected(countryName: String) {
