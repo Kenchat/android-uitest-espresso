@@ -85,3 +85,7 @@ app/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0
 /.idea/codeStyles/codeStyleConfig.xml
 /.idea/vcs.xml
 app/.idea/
+.idea/.name
+/.idea/.name
+/.idea/gradle.xml
+/.idea/codeStyles/Project.xml
