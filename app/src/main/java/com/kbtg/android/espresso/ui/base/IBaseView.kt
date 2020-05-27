@@ -1,10 +1,6 @@
 package com.kbtg.android.espresso.ui.base
 
-interface IBaseView{
-
-    fun showLoading()
-
-    fun hideLoading()
+interface IBaseView {
 
     fun loadError(e: Throwable)
 
