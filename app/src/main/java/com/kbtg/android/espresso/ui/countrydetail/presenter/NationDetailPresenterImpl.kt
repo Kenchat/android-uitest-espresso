@@ -4,11 +4,10 @@ import com.kbtg.android.espresso.network.CovidService
 import com.kbtg.android.espresso.ui.base.BasePresenter
 import com.kbtg.android.espresso.ui.countrydetail.view.INationDetailView
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Action
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class NationDetailPresenterImpl @Inject constructor(var nationDetailView: INationDetailView) :
+class NationDetailPresenterImpl @Inject constructor(private var nationDetailView: INationDetailView) :
         NationDetailPresenter, BasePresenter<INationDetailView>(nationDetailView) {
 
     @Inject
@@ -20,7 +19,6 @@ class NationDetailPresenterImpl @Inject constructor(var nationDetailView: INatio
         addDisposable(data.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .doOnDispose(Action { nationDetailView.onGetDataFailure() })
                 .subscribe(
                         { response ->
                             nationDetailView.updateCountryDetailData(response.reversed())

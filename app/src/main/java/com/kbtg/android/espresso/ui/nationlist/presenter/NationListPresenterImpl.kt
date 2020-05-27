@@ -7,9 +7,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class NationListPresenterImpl @Inject constructor(var nationView: INationListBaseView) :
-        BasePresenter<INationListBaseView>(nationView), INationListPresenter {
-
+class NationListPresenterImpl @Inject constructor(private var nationView: INationListBaseView) :
+    BasePresenter<INationListBaseView>(nationView), INationListPresenter {
     @Inject
     lateinit var networkApi: CovidService
 

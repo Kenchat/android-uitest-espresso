@@ -28,11 +28,11 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector, IBaseView
         super.onCreate(savedInstanceState)
 
         setContentView(setLayout())
-        initialzeProgressDialoge()
+        initializeProgressDialog()
         init(savedInstanceState)
     }
 
-    private fun initialzeProgressDialoge() {
+    private fun initializeProgressDialog() {
         mProgressDialog = ProgressDialog(this).apply {
             isIndeterminate = true
             setCancelable(false)

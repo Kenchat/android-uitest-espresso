@@ -21,7 +21,7 @@ class NetModule {
     @Singleton
     fun getHeaders(): HashMap<String, String> {
         val params = HashMap<String, String>()
-        params.put("Content-Type", "application/json")
+        params["Content-Type"] = "application/json"
         return params
     }
 

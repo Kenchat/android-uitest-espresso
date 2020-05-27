@@ -16,14 +16,9 @@ abstract class BaseMockService {
 
     private var mockWebServer = MockWebServer()
     private lateinit var dispatcher: Dispatcher
-    protected fun getDispatcher(): Dispatcher = dispatcher
     abstract fun initDispatcher(): Dispatcher
 
-    companion object {
-        const val SLEEP_TIME = 1000L
-    }
-
-    var activityTestRule = ActivityTestRule(MainActivity::class.java)
+    private var activityTestRule = ActivityTestRule(MainActivity::class.java)
 
     //use @JvmField to fix: Delegate runner 'androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner' for AndroidJUnit4 could not be loaded.
     @Rule
@@ -32,7 +27,7 @@ abstract class BaseMockService {
 
     @Rule
     @JvmField
-    val grantPermissionRule = GrantPermissionRule.grant(
+    val grantPermissionRule: GrantPermissionRule = GrantPermissionRule.grant(
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE"
     )
