@@ -1,4 +1,4 @@
-package com.kbtg.android.espresso.ui.countrydetail.dispatcher
+package com.kbtg.android.espresso.ui.nationdetail.dispatcher
 
 import android.util.Log
 import com.kbtg.android.espresso.base.DispatcherUtil

@@ -1,4 +1,4 @@
-package com.kbtg.android.espresso.ui.countrydetail.presenter
+package com.kbtg.android.espresso.ui.nationdetail.presenter
 
 interface NationDetailPresenter {
 

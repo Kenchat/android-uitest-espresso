@@ -1,4 +1,4 @@
-package com.kbtg.android.espresso.ui.countrydetail.view
+package com.kbtg.android.espresso.ui.nationdetail.view
 
 import android.os.Bundle
 import android.view.View
@@ -6,9 +6,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kbtg.android.espresso.R
 import com.kbtg.android.espresso.ui.base.BaseActivity
-import com.kbtg.android.espresso.ui.countrydetail.adapter.NationDetailAdapter
-import com.kbtg.android.espresso.ui.countrydetail.model.CountryDetailResponseItem
-import com.kbtg.android.espresso.ui.countrydetail.presenter.NationDetailPresenterImpl
+import com.kbtg.android.espresso.ui.nationdetail.adapter.NationDetailAdapter
+import com.kbtg.android.espresso.ui.nationdetail.model.NationDetailResponseItem
+import com.kbtg.android.espresso.ui.nationdetail.presenter.NationDetailPresenterImpl
 import kotlinx.android.synthetic.main.country_detail_activity.*
 import kotlinx.android.synthetic.main.nations_activity.loading
 import javax.inject.Inject
@@ -20,7 +20,7 @@ class NationDetailActivity : BaseActivity(), INationDetailView {
     @Inject
     lateinit var presenter: NationDetailPresenterImpl
 
-    private var listData = ArrayList<CountryDetailResponseItem>()
+    private var listData = ArrayList<NationDetailResponseItem>()
 
     override fun setLayout(): Int {
         return R.layout.country_detail_activity
@@ -39,7 +39,7 @@ class NationDetailActivity : BaseActivity(), INationDetailView {
         presenter.unbindView()
     }
 
-    override fun updateCountryDetailData(dataList: List<CountryDetailResponseItem>) {
+    override fun updateCountryDetailData(dataList: List<NationDetailResponseItem>) {
         loading.visibility = View.GONE
 
         tvCountryName.text = intent.getStringExtra(COUNTRY_NAME)

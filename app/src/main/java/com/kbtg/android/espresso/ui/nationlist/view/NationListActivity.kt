@@ -8,8 +8,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kbtg.android.espresso.R
 import com.kbtg.android.espresso.ui.base.BaseActivity
-import com.kbtg.android.espresso.ui.countrydetail.view.COUNTRY_NAME
-import com.kbtg.android.espresso.ui.countrydetail.view.NationDetailActivity
+import com.kbtg.android.espresso.ui.nationdetail.view.COUNTRY_NAME
+import com.kbtg.android.espresso.ui.nationdetail.view.NationDetailActivity
 import com.kbtg.android.espresso.ui.nationlist.adapter.NationListDataAdapter
 import com.kbtg.android.espresso.ui.nationlist.model.Country
 import com.kbtg.android.espresso.ui.nationlist.presenter.NationListPresenterImpl
@@ -18,7 +18,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
-class NationListActivity : BaseActivity(), INationListBaseView {
+class NationListActivity : BaseActivity(), INationListView {
 
     @Inject
     lateinit var presenter: NationListPresenterImpl

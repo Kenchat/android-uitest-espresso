@@ -3,7 +3,7 @@ package com.kbtg.android.espresso.ui.nationlist.view
 import com.kbtg.android.espresso.ui.base.IBaseView
 import com.kbtg.android.espresso.ui.nationlist.model.Country
 
-interface INationListBaseView : IBaseView {
+interface INationListView : IBaseView {
 
     fun updateDataSummary(dataList: List<Country>)
 

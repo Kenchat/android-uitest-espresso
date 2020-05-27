@@ -1,8 +1,8 @@
-package com.kbtg.android.espresso.ui.countrydetail.presenter
+package com.kbtg.android.espresso.ui.nationdetail.presenter
 
 import com.kbtg.android.espresso.network.CovidService
 import com.kbtg.android.espresso.ui.base.BasePresenter
-import com.kbtg.android.espresso.ui.countrydetail.view.INationDetailView
+import com.kbtg.android.espresso.ui.nationdetail.view.INationDetailView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
