@@ -51,9 +51,9 @@ android {
         }
 
         mockWebServer {
-            applicationId "com.kbtg.android.espresso"
+            applicationId "com.kbtg.android.espresso.uitest"
             dimension "kbtg"
-            buildConfigField "String", BASE_URL, '"http://localhost:8081/"'
+            buildConfigField "String", BASE_URL, '"http://localhost:8080/"'
         }
     }
 }
@@ -84,6 +84,8 @@ dependencies {
     // okhttp3
     implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:4.7.2"
+
+    //UI Test
     //implementation 'org.conscrypt:conscrypt-android:2.4.0'
     androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.7.2'
 
@@ -101,4 +103,5 @@ dependencies {
         exclude group: 'com.android.support', module: 'design'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
+    //End UI Test
 }

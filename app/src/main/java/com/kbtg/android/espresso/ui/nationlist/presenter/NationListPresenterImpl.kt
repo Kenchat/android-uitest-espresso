@@ -19,7 +19,7 @@ class NationListPresenterImpl @Inject constructor(private var nationView: INatio
             .subscribeOn(Schedulers.io())
             .subscribe(
                 { response ->
-                    nationView.updateDataSummary(response.Countries.take(10))
+                    nationView.updateDataSummary(response.Countries)
                 },
                 {
                     nationView.onGetDataFailure()

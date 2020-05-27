@@ -1,9 +1,11 @@
 package com.kbtg.android.espresso.base
 
 import android.content.Intent
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import com.kbtg.android.espresso.idlingresource.CustomIdlingResTestRule
+import com.kbtg.android.espresso.idlingresource.CustomIdlingResource
 import com.kbtg.android.espresso.ui.nationlist.view.NationListActivity
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockWebServer
@@ -24,9 +26,12 @@ abstract class BaseMockService {
     @JvmField
     val idlingResourceTestRule = CustomIdlingResTestRule()
 
+    // wait until espresso idle and all requests of apis are finished.
+    var idlingResource: CustomIdlingResource = CustomIdlingResource()
+
     @Before
     open fun setup() {
-        mockWebServer.start(8081)
+        mockWebServer.start(8080)
         dispatcher = initDispatcher()
         mockWebServer.dispatcher = dispatcher
 
@@ -36,11 +41,14 @@ abstract class BaseMockService {
         )
         activityTestRule.launchActivity(intent)
 
-        idlingResourceTestRule.idlingResource.updateIdleState()
+        IdlingRegistry.getInstance().register(idlingResource)
+
+        idlingResource.updateIdleState()
     }
 
     @After
     fun tearDown() {
         mockWebServer.shutdown()
+        IdlingRegistry.getInstance().unregister(idlingResource)
     }
 }

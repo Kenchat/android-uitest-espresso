@@ -5,11 +5,9 @@ import androidx.test.espresso.IdlingResource
 class CustomIdlingResource : IdlingResource {
     private var mIsIdle = false
     private var resourceCallback: IdlingResource.ResourceCallback? = null
-    private val waitAppLaunch = 2000L
 
     fun updateIdleState() {
-        Thread.sleep(waitAppLaunch)
-        mIsIdle = true
+        mIsIdle = true //false = espresso is pending and cannot do actions
         resourceCallback?.onTransitionToIdle()
     }
 
