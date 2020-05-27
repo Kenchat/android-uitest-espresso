@@ -15,7 +15,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class CountryDetailActivityUITest : BaseMockService() {
 
-    //2 commands to run compare screenshot
+    //2 command lines to run compare screenshot
     //./gradlew mockWebServerDebugExecuteScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.countrydetail.CountryDetailActivityUITest
     //./gradlew mockWebServerDebugExecuteScreenshotTests -Pandroid.testInstrumentationRunnerArguments.class=com.kbtg.android.espresso.countrydetail.CountryDetailActivityUITest
     override fun initDispatcher(): Dispatcher = CountryDetailActivityDispatcher()
@@ -32,19 +32,20 @@ class CountryDetailActivityUITest : BaseMockService() {
         }
 
         CommonViewAction.performViewVisible(
-            rcvCovidSummaryData, CommonViewAction.scrollRecyclerviewToPosition(10)
+            rcvCovidSummaryData, CommonViewAction.scrollRecyclerviewToPosition(9)
         )
 
-        Thread.sleep(4000)
+        //wait for recyclerView scroll to position 9
+        Thread.sleep(1000)
         ScreenShotUtil.captureScreen("NationListActivity-scrolled")
 
-        CommonViewAction.performClickOnRecyclerView(rcvCovidSummaryData, 9)
+        CommonViewAction.performClickOnRecyclerView(rcvCovidSummaryData, 8)
 
 
         val rcvCountryDetailByDate = CommonViewAction.getView(R.id.rcvCountryDetailByDate)
         CommonViewAction.waitViewVisible(rcvCountryDetailByDate) {
             //wait for all items are shown on recyclerview
-            Thread.sleep(2000)
+            Thread.sleep(1000)
             ScreenShotUtil.captureScreen("CountryDetailActivity")
         }
 
@@ -52,6 +53,7 @@ class CountryDetailActivityUITest : BaseMockService() {
             rcvCountryDetailByDate, CommonViewAction.scrollRecyclerviewToPosition(120)
         )
 
+        //wait for recyclerView scroll to latest position
         Thread.sleep(4000)
         ScreenShotUtil.captureScreen("CountryDetailActivity-scrolled")
     }

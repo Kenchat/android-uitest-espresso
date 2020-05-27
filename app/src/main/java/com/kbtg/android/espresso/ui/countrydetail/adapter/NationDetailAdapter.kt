@@ -11,13 +11,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class NationDetailAdapter(
-        private var itemList: List<CountryDetailResponseItem>
+    private var itemList: List<CountryDetailResponseItem>
 ) :
-        RecyclerView.Adapter<NationDetailAdapter.ViewHolder>() {
+    RecyclerView.Adapter<NationDetailAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_for_country_detail_list, parent, false)
+            .inflate(R.layout.item_for_country_detail_list, parent, false)
         return ViewHolder(v)
     }
 
@@ -26,11 +26,13 @@ class NationDetailAdapter(
         holder.tvRecovered.text = itemList[position].Recovered.toString()
         holder.tvDeaths.text = itemList[position].Deaths.toString()
 
-        val format1 = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-        val format2 = SimpleDateFormat("E dd-MMM-yyyy hh:mm:ss a")
-        val date: Date = format1.parse(itemList[position].Date)
+        val format1 = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val format2 = SimpleDateFormat("E dd-MMM-yyyy hh:mm:ss a", Locale.getDefault())
+        val date: Date? = format1.parse(itemList[position].Date)
 
-        holder.tvDate.text = format2.format(date)
+        holder.tvDate.text = date?.let {
+            format2.format(date)
+        } ?: ""
     }
 
     override fun getItemCount(): Int {
