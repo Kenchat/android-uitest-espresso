@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class NationDetailPresenterImpl @Inject constructor(private var nationDetailView: INationDetailView) :
-    NationDetailPresenter, BasePresenter<INationDetailView>(nationDetailView) {
+        NationDetailPresenter, BasePresenter<INationDetailView>(nationDetailView) {
 
     @Inject
     lateinit var networkApi: CovidService
@@ -17,16 +17,15 @@ class NationDetailPresenterImpl @Inject constructor(private var nationDetailView
 
         val data = networkApi.getCountryDetailData(countryName)
         addDisposable(data.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            //.doOnDispose(Action { nationDetailView.onGetDataFailure() })
-            .subscribe(
-                { response ->
-                    nationDetailView.updateCountryDetailData(response)
-                },
-                {
-                    nationDetailView.onGetDataFailure()
-                }
-            ))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(
+                        { response ->
+                            nationDetailView.updateCountryDetailData(response.reversed())
+                        },
+                        {
+                            nationDetailView.onGetDataFailure()
+                        }
+                ))
     }
 }

@@ -9,23 +9,22 @@ import javax.inject.Inject
 
 class NationListPresenterImpl @Inject constructor(private var nationView: INationListBaseView) :
     BasePresenter<INationListBaseView>(nationView), INationListPresenter {
-
     @Inject
     lateinit var networkApi: CovidService
 
     override fun getNationListData() {
         val summaryData = networkApi.getSummaryData()
         addDisposable(summaryData.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                { response ->
-                    nationView.updateDataSummary(response.Countries)
-                },
-                {
-                    nationView.onGetDataFailure()
-                }
-            ))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(
+                        { response ->
+                            nationView.updateDataSummary(response.Countries.take(10))
+                        },
+                        {
+                            nationView.onGetDataFailure()
+                        }
+                ))
     }
 
     override fun onItemSelected(countryName: String) {

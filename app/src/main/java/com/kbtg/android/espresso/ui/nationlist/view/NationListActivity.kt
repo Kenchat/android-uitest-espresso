@@ -14,10 +14,9 @@ import com.kbtg.android.espresso.ui.nationlist.adapter.NationListDataAdapter
 import com.kbtg.android.espresso.ui.nationlist.model.Country
 import com.kbtg.android.espresso.ui.nationlist.presenter.NationListPresenterImpl
 import kotlinx.android.synthetic.main.nations_activity.*
-import java.text.SimpleDateFormat
-import java.util.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 class NationListActivity : BaseActivity(), INationListBaseView {
 
@@ -49,10 +48,11 @@ class NationListActivity : BaseActivity(), INationListBaseView {
     @SuppressLint("SetTextI18n")
     override fun updateDataSummary(dataList: List<Country>) {
         loading.visibility = View.GONE
-        val date = Calendar.getInstance().time
-        val formatter = SimpleDateFormat.getDateTimeInstance()
-        val formattedDate = formatter.format(date)
-        tvTime.text = "Time: $formattedDate"
+
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("E dd-MM-yyyy")
+        val formatted = current.format(formatter)
+        tvTime.text = "Time: $formatted"
 
         listData.clear()
         listData.addAll(dataList)

@@ -7,6 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kbtg.android.espresso.R
 import com.kbtg.android.espresso.ui.countrydetail.model.CountryDetailResponseItem
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NationDetailAdapter(
         private var itemList: List<CountryDetailResponseItem>
@@ -24,7 +26,11 @@ class NationDetailAdapter(
         holder.tvRecovered.text = itemList[position].Recovered.toString()
         holder.tvDeaths.text = itemList[position].Deaths.toString()
 
-        holder.tvDate.text = itemList[position].Date
+        val format1 = SimpleDateFormat("yyyy-MM-dd")
+        val format2 = SimpleDateFormat("E dd-MM-yyyy")
+        val date: Date = format1.parse(itemList[position].Date)
+
+        holder.tvDate.text = format2.format(date)
     }
 
     override fun getItemCount(): Int {
