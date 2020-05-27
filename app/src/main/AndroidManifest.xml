@@ -20,17 +20,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute">
 
-        <activity android:name="com.kbtg.android.espresso.ui.main.view.MainActivity">
-
+        <activity android:name="com.kbtg.android.espresso.ui.nationlist.view.NationListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.kbtg.android.espresso.ui.page2.view.Page2Activity" />
-        <activity android:name="com.kbtg.android.espresso.ui.nationlist.view.NationListActivity" />
         <activity android:name="com.kbtg.android.espresso.ui.countrydetail.view.NationDetailActivity" />
     </application>
 
