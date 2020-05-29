@@ -18,13 +18,17 @@ class NationDetailActivityDispatcher : Dispatcher() {
         )
         return when (request.path) {
             API_SUMMARY -> {
-                val mock = DispatcherUtil.getMockResponse(PathJsonConstants.API_SUMMARY)
-                Log.d("LOG", "\t\t\t\t | ${PathJsonConstants.API_SUMMARY} | mock: $mock")
+                val mock = DispatcherUtil.getMockResponse(PathJsonConstants.JSON_SUMMARY)
+                Log.d("LOG", "\t\t\t\t | ${PathJsonConstants.JSON_SUMMARY} | mock: $mock")
                 mock
             }
             API_DAYONE_COUNTRY_THAILAND -> {
-                val mock = DispatcherUtil.getMockResponse(PathJsonConstants.API_DAYONE_COUNTRY_THAILAND)
-                Log.d("LOG", "\t\t\t\t | ${PathJsonConstants.API_DAYONE_COUNTRY_THAILAND} | mock: $mock")
+                val mock =
+                    DispatcherUtil.getMockResponse(PathJsonConstants.JSON_DAYONE_COUNTRY_THAILAND)
+                Log.d(
+                    "LOG",
+                    "\t\t\t\t | ${PathJsonConstants.JSON_DAYONE_COUNTRY_THAILAND} | mock: $mock"
+                )
                 mock
             }
             else -> {
